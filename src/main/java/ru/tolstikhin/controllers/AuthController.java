@@ -45,7 +45,7 @@ public class AuthController extends MainApp implements Initializable {
     private void showRegWindow(MouseEvent event) {
         Parent registration = null;
         try {
-            registration = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("registration.fxml")));
+            registration = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/registration.fxml")));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -81,7 +81,7 @@ public class AuthController extends MainApp implements Initializable {
     private void recoverPassword() {
         Parent recovering = null;
         try {
-            recovering = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("recovery.fxml")));
+            recovering = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/recovery.fxml")));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -100,7 +100,5 @@ public class AuthController extends MainApp implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        MainController mainController = new MainController();
-//        personalAccount = mainController.getPersonalAccount();
     }
 }

@@ -6,7 +6,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import ru.tolstikhin.DAO.PassengerDAO;
 import ru.tolstikhin.DAO.UserDAO;
 import ru.tolstikhin.MainApp;
@@ -19,6 +18,7 @@ import java.util.ResourceBundle;
 
 public class AccountController extends MainApp implements Initializable {
 
+    PassengerDAO passengerDAO;
     public int getUserId() {
         return userId;
     }
@@ -69,11 +69,7 @@ public class AccountController extends MainApp implements Initializable {
 
         alert.showAndWait();
     }
-    private void fillData() {
-        UserDAO userDAO = new UserDAO();
-        setUserId(MainController.getUserId());
-        myLoginField.setText(userDAO.selectLoginName(getUserId()));
-        PassengerDAO passengerDAO = new PassengerDAO();
+    private void fillOtherData() {
         Passenger passenger = passengerDAO.selectData();
         myNameField.setText(passenger.getName());
         mySurnameField.setText(passenger.getSurname());
@@ -82,8 +78,19 @@ public class AccountController extends MainApp implements Initializable {
         myPassportField.setText(passenger.getPassport_data());
     }
 
+    private void fillLogin() {
+        UserDAO userDAO = new UserDAO();
+        setUserId(MainController.getUserId());
+        myLoginField.setText(userDAO.selectLoginName(getUserId()));
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        fillData();
+        fillLogin();
+
+        passengerDAO = new PassengerDAO();
+        if (passengerDAO.passengerExists()) {
+            fillOtherData();
+        }
     }
 }

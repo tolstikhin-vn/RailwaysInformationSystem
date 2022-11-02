@@ -10,8 +10,6 @@ import ru.tolstikhin.HibernateUtil;
 import ru.tolstikhin.entities.Role;
 import ru.tolstikhin.entities.User;
 
-import java.util.List;
-
 public class UserDAO {
     private final int ADMIN_ID = 1;
     private final int PASSENGER_ID = 2;

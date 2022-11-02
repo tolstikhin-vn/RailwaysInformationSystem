@@ -3,11 +3,13 @@ package ru.tolstikhin.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -16,6 +18,7 @@ import ru.tolstikhin.MainApp;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -25,19 +28,15 @@ public class MainController implements Initializable {
     public static Stage accountStage = null;
 
     private static int userId;
-//
-//    public void setUserId(int userId) {
-//        this.userId = userId;
-//    }
 
     public static int getUserId() {
         return userId;
     }
     @FXML
-    public Text logInText;
+    private Text arrivalDateText;
 
     @FXML
-    private Text personalAccount;
+    private Text arrivalTimeText;
 
     @FXML
     private TextField cityFromField;
@@ -49,20 +48,58 @@ public class MainController implements Initializable {
     private DatePicker departureDate;
 
     @FXML
+    private Text departureDateText;
+
+    @FXML
+    private Text departureTimeText;
+
+    @FXML
+    private ImageView leftArrow;
+
+    @FXML
+    private Text logInText;
+
+    @FXML
+    private Text numOfPage;
+
+    @FXML
+    private Text pageNumber;
+
+    @FXML
+    private Text personalAccount;
+
+    @FXML
+    private ImageView rightArrow;
+
+    @FXML
+    private Text routeNameText;
+
+    @FXML
+    private Pane routePanel1;
+
+    @FXML
+    private Text stationFromText;
+
+    @FXML
+    private Text stationToText;
+
+    @FXML
+    private Text trainNameText;
+
+    @FXML
+    private Text travelTimeText;
+
+
+    @FXML
     void showAuthorizationWindow(MouseEvent event) {
-        Parent authorization = null;
-        FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/authorization.fxml")));
+        Stage authorizationWindow = new Stage();
         try {
-            authorization = loader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("authorization.fxml")));
+            authorizationWindow.setScene(new Scene(loader.load()));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-        Scene authorizationScene = new Scene(authorization);
-        Stage authorizationWindow = new Stage();
         authorizationWindow.setTitle("Вход");
-        authorizationWindow.setScene(authorizationScene);
-
         authorizationWindow.initModality(Modality.WINDOW_MODAL);
         authorizationWindow.initOwner(MainApp.primaryStage);
         authorizationWindow.show();
@@ -70,22 +107,16 @@ public class MainController implements Initializable {
         authStage = authorizationWindow;
     }
 
-
     @FXML
     void showAccountWindow(MouseEvent event) {
-        Parent account = null;
-        FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/account.fxml")));
+        Stage accountWindow = new Stage();
         try {
-            account = loader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("account.fxml")));
+            accountWindow.setScene(new Scene(loader.load()));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
-        Scene accountScene = new Scene(account);
-        Stage accountWindow = new Stage();
         accountWindow.setTitle("Профиль пользователя");
-        accountWindow.setScene(accountScene);
-
         accountWindow.initModality(Modality.WINDOW_MODAL);
         accountWindow.initOwner(MainApp.primaryStage);
         accountWindow.show();
@@ -93,13 +124,24 @@ public class MainController implements Initializable {
         accountStage = accountWindow;
     }
 
-    @FXML
-    public void findRout(MouseEvent event) {
+    /**
+     * Сделать прошедшие дни относительно текущего неактивными для выбора
+     */
+    private void disablePastDates() {
+        departureDate.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
 
+                setDisable(empty || date.compareTo(today) < 0 );
+            }
+        });
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    /**
+     * Изменить logInText на personalAccount, если пользователя вошел в аккаунт, для возможности перехода в него
+     */
+    private void setPersonalAccount() {
         userId = AuthController.getUserId();
         if (userId != 0) {
             UserDAO userDAO = new UserDAO();
@@ -118,5 +160,11 @@ public class MainController implements Initializable {
             personalAccount.setVisible(false);
             personalAccount.setDisable(true);
         }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setPersonalAccount();
+        disablePastDates();
     }
 }

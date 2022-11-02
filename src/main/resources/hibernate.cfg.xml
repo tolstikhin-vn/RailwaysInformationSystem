@@ -17,5 +17,13 @@
         <mapping class="ru.tolstikhin.entities.User"/>
         <mapping class="ru.tolstikhin.entities.Role"/>
         <mapping class="ru.tolstikhin.entities.Passenger"/>
+        <mapping class="ru.tolstikhin.entities.City"/>
+        <mapping class="ru.tolstikhin.entities.Route"/>
+        <mapping class="ru.tolstikhin.entities.Seat"/>
+        <mapping class="ru.tolstikhin.entities.Ticket"/>
+        <mapping class="ru.tolstikhin.entities.Train"/>
+        <mapping class="ru.tolstikhin.entities.TrainStation"/>
+        <mapping class="ru.tolstikhin.entities.Wagon"/>
+        <mapping class="ru.tolstikhin.entities.WagonType"/>
     </session-factory>
 </hibernate-configuration>

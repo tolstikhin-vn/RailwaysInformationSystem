@@ -2,17 +2,13 @@ package ru.tolstikhin.DAO;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.CriteriaUpdate;
 import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.registry.selector.spi.StrategyCreator;
 import org.hibernate.query.Query;
 import ru.tolstikhin.HibernateUtil;
 import ru.tolstikhin.controllers.MainController;
 import ru.tolstikhin.entities.Passenger;
-import ru.tolstikhin.entities.User;
 
 import java.sql.Date;
 import java.util.List;
@@ -61,10 +57,19 @@ public class PassengerDAO {
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Passenger> cq = builder.createQuery(Passenger.class);
         Root<Passenger> root = cq.from(Passenger.class);
-        System.out.println("---------->" + MainController.getUserId());
         cq.select(root).where(builder.equal(root.get("id"), MainController.getUserId()));
         Query query = session.createQuery(cq);
         List<Passenger> passengerList = query.getResultList();
         return passengerList.get(0);
+    }
+
+    public boolean passengerExists() {
+        session = HibernateUtil.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Passenger> cq = builder.createQuery(Passenger.class);
+        Root<Passenger> root = cq.from(Passenger.class);
+        cq.select(root).where(builder.equal(root.get("id"), MainController.getUserId()));
+        Query query = session.createQuery(cq);
+        return !query.getResultList().isEmpty();
     }
 }
