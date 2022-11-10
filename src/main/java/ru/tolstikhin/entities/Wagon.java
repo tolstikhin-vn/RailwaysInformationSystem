@@ -24,14 +24,17 @@ public class Wagon {
     @Column(name = "wagon_number_on_train")
     private int wagon_number_on_train;
 
-    @ManyToOne
-    @JoinColumn(name = "wagon_type")
-    private WagonType wagon_type;
+    //    @ManyToOne
+    @Column(name = "wagon_type")
+    private int wagon_type;
 
-    @ManyToOne
-    @JoinColumn(name = "train")
-    private Train train;
+    @Column(name = "train")
+    private int train;
 
     @OneToMany(mappedBy = "wagon")
     private List<Seat> seats;
+
+    public int getWagonNumber() {
+        return wagon_number;
+    }
 }

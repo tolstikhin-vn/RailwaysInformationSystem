@@ -3,6 +3,7 @@ package ru.tolstikhin.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import ru.tolstikhin.DAO.UserDAO;
@@ -13,20 +14,20 @@ import java.util.ResourceBundle;
 public class DataRecoveryController implements Initializable {
 
     @FXML
-    public TextField newPassField;
+    public PasswordField newPassField;
 
     @FXML
     public TextField recoveryLoginField;
 
     @FXML
-    public TextField repeatNewPassField;
+    public PasswordField repeatNewPassField;
 
     @FXML
     public Button updatePassButton;
     @FXML
     public void checkLogin() {
         UserDAO userDAO = new UserDAO();
-        if (userDAO.selectLogin(recoveryLoginField.getText())) {
+        if (userDAO.userExists(recoveryLoginField.getText())) {
             newPassField.setEditable(true);
             repeatNewPassField.setEditable(true);
             updatePassButton.setDisable(false);

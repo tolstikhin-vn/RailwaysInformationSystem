@@ -24,10 +24,10 @@ public class Seat {
     @Column(name = "booked")
     private boolean booked;
 
-    @ManyToOne
-    @JoinColumn(name = "wagon_number")
-    private Wagon wagon;
+    //    @ManyToOne
+    @Column(name = "wagon_number")
+    private int wagon;
 
     @Column(name = "seat_price")
-    private int seat_price;
+    private float seat_price;
 }

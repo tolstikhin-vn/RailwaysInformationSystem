@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -22,12 +23,11 @@ public class AuthController extends MainApp implements Initializable {
 
     public static Stage regStage = null;
     public static Stage recoverStage = null;
-//    public Text personalAccount;
     @FXML
     public TextField authLoginField;
 
     @FXML
-    public TextField authPasswordField;
+    public PasswordField authPasswordField;
     @FXML
     public Text logEnErrorMessage;
 

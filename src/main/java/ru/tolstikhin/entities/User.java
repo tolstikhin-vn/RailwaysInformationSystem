@@ -38,7 +38,8 @@ public class User {
     @JoinColumn(name = "role")
     private Role role;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String login, String password, Role role) {
         this.login = login;
@@ -48,10 +49,5 @@ public class User {
 
     public int getId() {
         return id;
-    }
-
-    @Override
-    public String toString() {
-        return "id " + id + " login " + login + " passw " + password + " role " + role;
     }
 }

@@ -49,18 +49,22 @@ public class UserDAO {
 //        return query.uniqueResult() != null;
     }
 
-    public boolean selectLogin(String login) {
+    public boolean userExists(String login) {
         session = HibernateUtil.openSession();
         Query query = session.createQuery("FROM User users WHERE users.login = :paramLogin");
         query.setParameter("paramLogin", login);
-        return query.uniqueResult() != null;
+        boolean userExists = query.uniqueResult() != null;
+        session.close();
+        return userExists;
     }
 
     public String selectLoginName(int id) {
         session = HibernateUtil.openSession();
         Query query = session.createQuery("SELECT login FROM User users WHERE id = :paramId");
         query.setParameter("paramId", id);
-        return (String) query.uniqueResult();
+        String login = (String) query.uniqueResult();
+        session.close();
+        return login;
     }
 
     public int selectId(String login, String password) {
@@ -68,7 +72,9 @@ public class UserDAO {
         Query query = session.createQuery("SELECT id FROM User users WHERE login = :paramLogin AND password = :paramPassword");
         query.setParameter("paramLogin", login);
         query.setParameter("paramPassword", password);
-        return (int) query.uniqueResult();
+        int id = (int) query.uniqueResult();
+        session.close();
+        return id;
     }
 
     public void updateInputData(String password, String login) {

@@ -22,8 +22,11 @@
         <mapping class="ru.tolstikhin.entities.Seat"/>
         <mapping class="ru.tolstikhin.entities.Ticket"/>
         <mapping class="ru.tolstikhin.entities.Train"/>
+        <mapping class="ru.tolstikhin.entities.TrainName"/>
         <mapping class="ru.tolstikhin.entities.TrainStation"/>
         <mapping class="ru.tolstikhin.entities.Wagon"/>
         <mapping class="ru.tolstikhin.entities.WagonType"/>
+        <mapping class="ru.tolstikhin.entities.Schedule"/>
+        <mapping class="ru.tolstikhin.entities.TrainStation"/>
     </session-factory>
 </hibernate-configuration>

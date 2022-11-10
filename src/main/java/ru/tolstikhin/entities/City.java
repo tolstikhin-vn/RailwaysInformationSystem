@@ -19,9 +19,17 @@ public class City {
     @Column(name = "city_id")
     private int city_id;
 
-    @OneToMany(mappedBy = "city")
-    private List<TrainStation> trainStation;
+//    @OneToMany(mappedBy = "city")
+//    private List<TrainStation> trainStation;
 
     @Column(name = "city_name")
     private String city_name;
+
+    public int getCityId() {
+        return city_id;
+    }
+
+    public String getCityName() {
+        return city_name;
+    }
 }

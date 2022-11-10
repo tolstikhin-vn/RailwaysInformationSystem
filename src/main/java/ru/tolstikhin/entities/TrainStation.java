@@ -21,16 +21,26 @@ public class TrainStation {
     @Column(name = "station_id")
     private int station_id;
 
-    @OneToMany(mappedBy = "trainStationFrom")
-    private List<Route> routes1;
+//    @OneToMany(mappedBy = "trainStationFrom")
+//    private List<Route> routes1;
+//
+//    @OneToMany(mappedBy = "trainStationTo")
+//    private List<Route> routes2;
 
-    @OneToMany(mappedBy = "trainStationTo")
-    private List<Route> routes2;
+//    @OneToMany(mappedBy = "trainStationFrom")
+//    private List<Route> routes1;
+//
+//    @OneToMany(mappedBy = "trainStationTo")
+//    private List<Route> routes2;
 
     @Column(name = "station_name")
     private String station_name;
 
-    @ManyToOne
-    @JoinColumn(name = "city")
-    private City city;
+//    @ManyToOne
+    @Column(name = "city")
+    private int city;
+
+    public int getCity() {
+        return city;
+    }
 }

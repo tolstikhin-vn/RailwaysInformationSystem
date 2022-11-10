@@ -59,8 +59,9 @@ public class PassengerDAO {
         Root<Passenger> root = cq.from(Passenger.class);
         cq.select(root).where(builder.equal(root.get("id"), MainController.getUserId()));
         Query query = session.createQuery(cq);
-        List<Passenger> passengerList = query.getResultList();
-        return passengerList.get(0);
+        Passenger passenger = (Passenger) query.getResultList().get(0);
+        session.close();
+        return passenger;
     }
 
     public boolean passengerExists() {
@@ -70,6 +71,8 @@ public class PassengerDAO {
         Root<Passenger> root = cq.from(Passenger.class);
         cq.select(root).where(builder.equal(root.get("id"), MainController.getUserId()));
         Query query = session.createQuery(cq);
-        return !query.getResultList().isEmpty();
+        boolean passengerExists = !query.getResultList().isEmpty();
+        session.close();
+        return passengerExists;
     }
 }
