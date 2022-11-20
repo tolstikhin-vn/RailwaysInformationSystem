@@ -291,7 +291,9 @@ public class AccountController extends MainApp implements Initializable {
      * @param passengerIndex индекс выбранного пассажира в ComboBox
      */
     private void showInfAboutPassenger(int passengerIndex) {
-        // Если пассажир выбран, заполняем поля его данными, иначе -
+        setDefaultGenderPaneStyle();
+
+        // Если пассажир выбран, заполняем поля его данными, иначе - очищаем поля
         if (!passengersList.getSelectionModel().isEmpty()) {
             addPassenger.setVisible(false);
             savePassenger.setVisible(true);
@@ -304,6 +306,7 @@ public class AccountController extends MainApp implements Initializable {
             passPatronymic.setText(passenger.getPatronymic());
             passBirthday.setValue(passenger.getBirthdate().toLocalDate());
             passPassportData.setText(passenger.getPassportData());
+
             if (Objects.equals(passenger.getGender(), "М")) {
                 passMaleGender.setStyle(FX_BACKGROUND_COLOR_RED);
             } else if (Objects.equals(passenger.getGender(), "Ж")) {
@@ -315,9 +318,12 @@ public class AccountController extends MainApp implements Initializable {
             passPatronymic.setText("");
             passBirthday.setValue(null);
             passPassportData.setText("");
-            passMaleGender.setStyle(FX_BACKGROUND_NO_COLOR);
-            passFemaleGender.setStyle(FX_BACKGROUND_NO_COLOR);
         }
+    }
+
+    private void setDefaultGenderPaneStyle() {
+        passMaleGender.setStyle(FX_BACKGROUND_NO_COLOR);
+        passFemaleGender.setStyle(FX_BACKGROUND_NO_COLOR);
     }
 
     @Override
