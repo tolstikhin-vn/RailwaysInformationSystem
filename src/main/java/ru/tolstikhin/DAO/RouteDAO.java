@@ -5,10 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import ru.tolstikhin.HibernateUtil;
 import ru.tolstikhin.entities.Route;
-import ru.tolstikhin.entities.Schedule;
-
-import java.time.LocalDate;
-import java.util.List;
 
 public class RouteDAO {
 
@@ -20,6 +16,11 @@ public class RouteDAO {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 
+    /**
+     * Выбрать маршрут из расписания
+     * @param scheduleId id расписания
+     * @return маршрут
+     */
     public Route selectRoute(int scheduleId) {
         session = HibernateUtil.openSession();
         Query query = session.createQuery("FROM Route r\n" +

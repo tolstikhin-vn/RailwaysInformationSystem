@@ -22,11 +22,6 @@ public class Route {
     @Column(name = "station_to")
     private int station_to;
 
-    public int getRouteId() {
-        return route_id;
-    }
-
-
     public int getStationFrom() {
         return station_from;
     }

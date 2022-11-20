@@ -16,7 +16,7 @@ public class RegController {
     @FXML
     void registerUser(MouseEvent event) {
         UserDAO userDAO = new UserDAO();
-        userDAO.insertData(regLoginField.getText(), regPasswordField.getText());
+        userDAO.insertUserData(regLoginField.getText(), regPasswordField.getText());
         AuthController.regStage.close();
         MainController.authStage.show();
     }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
@@ -12,52 +13,52 @@
 
 <AnchorPane prefHeight="535.0" prefWidth="770.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tolstikhin.controllers.MainController">
    <children>
-      <Text fx:id="logInText" layoutX="651.0" layoutY="31.0" onMouseClicked="#showAuthorizationWindow" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Личный кабинет" textAlignment="RIGHT" AnchorPane.rightAnchor="19.80000000000004">
+      <Text fx:id="logInText" layoutX="655.0" layoutY="32.0" onMouseClicked="#showAuthorizationWindow" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Личный кабинет" textAlignment="RIGHT" AnchorPane.rightAnchor="22.75976562500034">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
       </Text>
-      <Text fx:id="personalAccount" disable="true" layoutX="641.0" layoutY="32.0" onMouseClicked="#showAccountWindow" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" textAlignment="RIGHT" visible="false" wrappingWidth="113.0">
+      <Text fx:id="personalAccount" disable="true" layoutX="655.0" layoutY="32.0" onMouseClicked="#showAccountWindow" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" textAlignment="RIGHT" visible="false" wrappingWidth="113.0">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="cityFromField" focusTraversable="false" layoutX="20.0" layoutY="53.0" prefHeight="40.0" prefWidth="230.0" promptText="Откуда">
+      <TextField fx:id="cityFromField" focusTraversable="false" layoutX="20.0" layoutY="53.0" prefHeight="40.0" prefWidth="238.0" promptText="Откуда">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </TextField>
-      <TextField fx:id="cityToField" focusTraversable="false" layoutX="250.0" layoutY="53.0" prefHeight="40.0" prefWidth="230.0" promptText="Куда">
+      <TextField fx:id="cityToField" focusTraversable="false" layoutX="258.0" layoutY="53.0" prefHeight="40.0" prefWidth="238.0" promptText="Куда">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </TextField>
-      <DatePicker fx:id="departureDate" focusTraversable="false" layoutX="480.0" layoutY="53.0" prefHeight="40.0" prefWidth="175.0" promptText="Дата" />
-      <Button layoutX="655.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#showRoutes" prefHeight="40.0" prefWidth="106.0" style="-fx-background-color: #e31b1a; -fx-cursor: hand;" text="НАЙТИ" textFill="WHITE" AnchorPane.rightAnchor="19.80000000000004">
+      <DatePicker fx:id="departureDate" focusTraversable="false" layoutX="496.0" layoutY="53.0" prefHeight="40.0" prefWidth="172.0" promptText="Дата" />
+      <Button layoutX="668.1999999999999" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#showRoutes" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #e31b1a; -fx-cursor: hand;" text="НАЙТИ" textFill="WHITE" AnchorPane.rightAnchor="17.800000000000068">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
       </Button>
       <AnchorPane layoutX="15.0" layoutY="115.0" prefHeight="378.0" prefWidth="740.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="115.0">
          <children>
-            <Pane fx:id="routePanel1" prefHeight="123.0" prefWidth="751.0" style="-fx-background-color: #f2f2f2; -fx-cursor: hand;" visible="false">
+            <Pane fx:id="routePanel1" onMouseEntered="#changeFirstPaneColor" onMouseExited="#changeFirstPaneDefColor" prefHeight="124.0" prefWidth="761.0" style="-fx-background-color: #f7f7f7;" visible="false">
                <children>
-                  <Text fx:id="trainNameText" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="130.0">
+                  <Text fx:id="trainNameText1" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="130.0">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Text>
-                  <Text fx:id="routeNameText" layoutX="158.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="300.0">
+                  <Text fx:id="routeNameText1" layoutX="158.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="300.0">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Text>
-                  <Text fx:id="departureDateText" fill="#5b5b5b" layoutX="10.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="70.0">
+                  <Text fx:id="departureDateText1" fill="#5b5b5b" layoutX="10.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="70.0">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Text>
-                  <Text fx:id="departureTimeText" layoutX="10.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="100.0">
+                  <Text fx:id="departureTimeText1" layoutX="10.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="100.0">
                      <font>
                         <Font name="Arial" size="36.0" />
                      </font>
@@ -67,27 +68,27 @@
                         <Image url="@../images/dotted_line.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="arrivalTimeText" layoutX="308.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="100.0">
-                     <font>
-                        <Font name="Arial" size="36.0" />
-                     </font>
-                  </Text>
-                  <Text fx:id="arrivalDateText" fill="#5b5b5b" layoutX="337.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="70.0">
+                  <Text fx:id="arrivalDateText1" fill="#5b5b5b" layoutX="337.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="70.0">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Text>
-                  <Text fx:id="stationFromText" layoutX="10.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="188.0">
+                  <Text fx:id="arrivalTimeText1" layoutX="308.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="100.0">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stationFromText1" layoutX="10.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="188.0">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
                   </Text>
-                  <Text fx:id="stationToText" layoutX="220.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="188.0">
+                  <Text fx:id="stationToText1" layoutX="220.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="188.0">
                      <font>
                         <Font name="Arial" size="12.0" />
                      </font>
                   </Text>
-                  <Text fx:id="travelTimeText" fill="#5b5b5b" layoutX="155.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="110.0">
+                  <Text fx:id="travelTimeText1" fill="#5b5b5b" layoutX="155.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="110.0">
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
@@ -97,59 +98,78 @@
                         <Image url="@../images/vertical_line.png" />
                      </image>
                   </ImageView>
-                  <AnchorPane fx:id="priceTableau1" layoutX="472.0" layoutY="15.0" prefHeight="96.0" prefWidth="279.0">
+                  <AnchorPane fx:id="priceTableau1" layoutX="472.0" layoutY="15.0" prefHeight="96.0" prefWidth="279.0" visible="false">
                      <children>
-                        <Pane fx:id="pricePane1" layoutY="-1.0" prefHeight="30.0" prefWidth="279.0" visible="false">
+                        <Pane fx:id="pricePane11" onMouseClicked="#showTicketBuyWindow" prefHeight="24.0" prefWidth="279.0" visible="false">
                            <children>
-                              <Text fx:id="wagonTypeText1" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                              <Text fx:id="wagonTypeText111" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="freeSeatsText1" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                              <Text fx:id="freeSeatsText112" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="priceText1" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                              <Text fx:id="priceText113" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Text>
                            </children>
                         </Pane>
-                        <Pane fx:id="pricePane2" layoutY="33.0" prefHeight="30.0" prefWidth="279.0" visible="false">
+                        <Pane fx:id="pricePane12" layoutY="24.0" onMouseClicked="#showTicketBuyWindow" prefHeight="24.0" prefWidth="279.0" visible="false">
                            <children>
-                              <Text fx:id="wagonTypeText2" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                              <Text fx:id="wagonTypeText121" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="freeSeatsText2" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                              <Text fx:id="freeSeatsText122" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="priceText2" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                              <Text fx:id="priceText123" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Text>
                            </children>
                         </Pane>
-                        <Pane fx:id="pricePane3" layoutY="67.0" prefHeight="30.0" prefWidth="279.0" visible="false">
+                        <Pane fx:id="pricePane13" layoutY="48.0" onMouseClicked="#showTicketBuyWindow" prefHeight="24.0" prefWidth="279.0" visible="false">
                            <children>
-                              <Text fx:id="wagonTypeText3" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                              <Text fx:id="wagonTypeText131" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="freeSeatsText3" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                              <Text fx:id="freeSeatsText132" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
                               </Text>
-                              <Text fx:id="priceText3" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                              <Text fx:id="priceText133" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pricePane14" layoutY="72.0" onMouseClicked="#showTicketBuyWindow" prefHeight="24.0" prefWidth="279.0" visible="false">
+                           <children>
+                              <Text fx:id="wagonTypeText1311" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="freeSeatsText1321" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="priceText1331" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
                                  <font>
                                     <Font name="Arial" size="14.0" />
                                  </font>
@@ -160,6 +180,290 @@
                   </AnchorPane>
                </children>
             </Pane>
+            <Pane fx:id="routePanel2" layoutY="127.0" onMouseEntered="#changeSecondPaneColor" onMouseExited="#changeSecondPaneDefColor" prefHeight="124.0" prefWidth="761.0" style="-fx-background-color: #f7f7f7;" visible="false">
+               <children>
+                  <Text fx:id="trainNameText2" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="130.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="routeNameText2" layoutX="158.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="300.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="departureDateText2" fill="#5b5b5b" layoutX="10.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="70.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="departureTimeText2" layoutX="10.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="100.0">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="110.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/dotted_line.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="arrivalDateText2" fill="#5b5b5b" layoutX="337.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="70.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="arrivalTimeText2" layoutX="308.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="100.0">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stationFromText2" layoutX="10.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="188.0">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stationToText2" layoutX="220.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="188.0">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="travelTimeText2" fill="#5b5b5b" layoutX="155.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="110.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="108.0" fitWidth="40.0" layoutX="470.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/vertical_line.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane fx:id="priceTableau2" layoutX="472.0" layoutY="15.0" prefHeight="96.0" prefWidth="279.0" visible="false">
+                     <children>
+                        <Pane fx:id="pricePane21" onMouseClicked="#showTicketBuyWindow" prefHeight="24.0" prefWidth="279.0" visible="false">
+                           <children>
+                              <Text fx:id="wagonTypeText211" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="freeSeatsText212" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="priceText213" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pricePane22" layoutY="24.0" onMouseClicked="#showTicketBuyWindow" prefHeight="24.0" prefWidth="279.0" visible="false">
+                           <children>
+                              <Text fx:id="wagonTypeText221" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="freeSeatsText222" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="priceText223" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pricePane23" layoutY="48.0" onMouseClicked="#showTicketBuyWindow" prefHeight="24.0" prefWidth="279.0" visible="false">
+                           <children>
+                              <Text fx:id="wagonTypeText231" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="freeSeatsText232" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="priceText233" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pricePane24" layoutY="72.0" onMouseClicked="#showTicketBuyWindow" prefHeight="24.0" prefWidth="279.0" visible="false">
+                           <children>
+                              <Text fx:id="wagonTypeText2311" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="freeSeatsText2321" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="priceText2331" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                     </children>
+                     <padding>
+                        <Insets right="-20.0" />
+                     </padding>
+                  </AnchorPane>
+               </children>
+            </Pane>
+            <Pane fx:id="routePanel3" layoutY="254.0" onMouseEntered="#changeThirdPaneColor" onMouseExited="#changeThirdPaneDefColor" prefHeight="124.0" prefWidth="762.0" style="-fx-background-color: #f7f7f7;" visible="false">
+               <children>
+                  <Text fx:id="trainNameText3" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="130.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="routeNameText3" layoutX="158.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="300.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="departureDateText3" fill="#5b5b5b" layoutX="10.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="70.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="departureTimeText3" layoutX="10.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="100.0">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="110.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/dotted_line.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="arrivalDateText3" fill="#5b5b5b" layoutX="337.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="70.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="arrivalTimeText3" layoutX="308.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="100.0">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stationFromText3" layoutX="10.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="188.0">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stationToText3" layoutX="220.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="188.0">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="travelTimeText3" fill="#5b5b5b" layoutX="155.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="110.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="108.0" fitWidth="40.0" layoutX="470.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/vertical_line.png" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane fx:id="priceTableau3" layoutX="472.0" layoutY="8.0" prefHeight="96.0" prefWidth="279.0" visible="false">
+                     <children>
+                        <Pane fx:id="pricePane31" onMouseClicked="#showTicketBuyWindow" prefHeight="24.0" prefWidth="279.0" visible="false">
+                           <children>
+                              <Text fx:id="wagonTypeText311" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="freeSeatsText312" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="priceText313" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pricePane32" layoutY="24.0" onMouseClicked="#showTicketBuyWindow" prefHeight="24.0" prefWidth="279.0" visible="false">
+                           <children>
+                              <Text fx:id="wagonTypeText321" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="freeSeatsText322" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="priceText323" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pricePane33" layoutY="48.0" onMouseClicked="#showTicketBuyWindow" prefHeight="30.0" prefWidth="279.0" visible="false">
+                           <children>
+                              <Text fx:id="wagonTypeText331" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="freeSeatsText332" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="priceText333" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="pricePane34" layoutY="72.0" onMouseClicked="#showTicketBuyWindow" prefHeight="30.0" prefWidth="279.0" visible="false">
+                           <children>
+                              <Text fx:id="wagonTypeText3311" layoutX="14.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="freeSeatsText3321" layoutX="132.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="30.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="priceText3331" layoutX="176.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="90.0">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                     </children>
+                     <padding>
+                        <Insets right="-20.0" />
+                     </padding>
+                  </AnchorPane>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
       <Text fx:id="numOfPage" layoutX="373.0" layoutY="521.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER">
@@ -167,12 +471,12 @@
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Text>
-      <ImageView fx:id="leftArrow" fitHeight="30.0" fitWidth="30.0" layoutX="337.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+      <ImageView fx:id="leftArrow" disable="true" fitHeight="30.0" fitWidth="30.0" layoutX="337.0" layoutY="500.0" onMouseClicked="#showPreviousPage" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
          <image>
             <Image url="@../images/left_arrow.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="rightArrow" fitHeight="30.0" fitWidth="30.0" layoutX="408.0" layoutY="500.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+      <ImageView fx:id="rightArrow" disable="true" fitHeight="30.0" fitWidth="30.0" layoutX="409.0" layoutY="500.0" onMouseClicked="#showNextPage" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
          <image>
             <Image url="@../images/right_arrow.png" />
          </image>

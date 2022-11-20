@@ -7,11 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -20,13 +16,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private int id;
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private Passenger passenger;
-
-    @OneToMany(mappedBy = "user")
-    private List<Ticket> tickets;
 
     @Column(name = "login")
     private String login;
@@ -37,6 +26,18 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role")
     private Role role;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "surname")
+    private String surname;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "gender")
+    private String gender;
 
     public User() {
     }
@@ -49,5 +50,36 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

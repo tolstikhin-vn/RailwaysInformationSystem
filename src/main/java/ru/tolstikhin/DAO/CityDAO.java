@@ -15,6 +15,11 @@ public class CityDAO {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 
+    /**
+     * Выбрать город отправления по id станции
+     * @param stationId id станции
+     * @return город отправления
+     */
     public String selectCityFrom(int stationId) {
         session = HibernateUtil.openSession();
         Query query = session.createQuery("SELECT c.city_name FROM City c\n" +
@@ -23,11 +28,16 @@ public class CityDAO {
                 "INNER JOIN Schedule sc ON sc.route_id = r.route_id\n" +
                 "WHERE sc.route_id = :paramStationId");
         query.setParameter("paramStationId", stationId);
-        String cityFrom = (String) query.uniqueResult();
+        String cityFrom = (String) query.getResultList().get(0);
         session.close();
         return cityFrom;
     }
 
+    /**
+     * Получаем название города назначения по id станции
+     * @param stationId id станции
+     * @return город отправления
+     */
     public String selectCityTo(int stationId) {
         session = HibernateUtil.openSession();
         Query query = session.createQuery("SELECT c.city_name FROM City c\n" +
@@ -37,7 +47,7 @@ public class CityDAO {
                 "ON r.station_to = ts.station_id\n" +
                 "WHERE r.station_to = :paramStationId");
         query.setParameter("paramStationId", stationId);
-        String cityTo = (String) query.uniqueResult();
+        String cityTo = (String) query.getResultList().get(0);
         session.close();
         return cityTo;
     }

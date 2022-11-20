@@ -5,8 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,10 +22,25 @@ public class Seat {
     @Column(name = "booked")
     private boolean booked;
 
-    //    @ManyToOne
     @Column(name = "wagon_number")
     private int wagon;
 
     @Column(name = "seat_price")
     private float seat_price;
+
+    public int getSeatNumberInWagon() {
+        return seat_number_in_wagon;
+    }
+
+    public float getSeatPrice() {
+        return seat_price;
+    }
+
+    public void setBooked(boolean booked) {
+        this.booked = booked;
+    }
+
+    public int getSeatNumber() {
+        return seat_number;
+    }
 }

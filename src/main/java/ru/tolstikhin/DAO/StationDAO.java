@@ -15,6 +15,11 @@ public class StationDAO {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 
+    /**
+     * Выбрать название станции отправления
+     * @param stationId id станции
+     * @return название станции отправления
+     */
     public String selectStationFrom(int stationId) {
         session = HibernateUtil.openSession();
         Query query = session.createQuery("SELECT ts.station_name FROM TrainStation ts\n" +
@@ -27,6 +32,11 @@ public class StationDAO {
         return stationFrom;
     }
 
+    /**
+     * Выбрать название станции назначения
+     * @param stationId id станции
+     * @return название станции назначения
+     */
     public String selectStationTo(int stationId) {
         session = HibernateUtil.openSession();
         Query query = session.createQuery("SELECT ts.station_name FROM TrainStation ts\n" +

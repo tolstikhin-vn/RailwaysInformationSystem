@@ -4,9 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Id;;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -24,7 +22,6 @@ public class Wagon {
     @Column(name = "wagon_number_on_train")
     private int wagon_number_on_train;
 
-    //    @ManyToOne
     @Column(name = "wagon_type")
     private int wagon_type;
 
@@ -34,7 +31,11 @@ public class Wagon {
     @OneToMany(mappedBy = "wagon")
     private List<Seat> seats;
 
-    public int getWagonNumber() {
-        return wagon_number;
+    public int getWagonNumberOnTrain() {
+        return wagon_number_on_train;
+    }
+
+    public int getWagonType() {
+        return wagon_type;
     }
 }

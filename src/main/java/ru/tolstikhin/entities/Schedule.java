@@ -41,55 +41,23 @@ public class Schedule {
         return schedule_id;
     }
 
-    public void setScheduleId(int schedule_id) {
-        this.schedule_id = schedule_id;
-    }
-
-    public int getRouteId() {
-        return route_id;
-    }
-
-    public void setRouteId(int route_id) {
-        this.route_id = route_id;
-    }
-
     public int getTrainNumber() {
         return train_number;
-    }
-
-    public void setTrainNumber(int train_number) {
-        this.train_number = train_number;
     }
 
     public Date getDepartureDate() {
         return departure_date;
     }
 
-    public void setDepartureDate(Date departure_date) {
-        this.departure_date = departure_date;
-    }
-
     public Time getDepartureTime() {
         return departure_time;
-    }
-
-    public void setDepartureTime(Time departure_time) {
-        this.departure_time = departure_time;
     }
 
     public Date getArrivalDate() {
         return arrival_date;
     }
 
-    public void setArrivalDate(Date arrival_date) {
-        this.arrival_date = arrival_date;
-    }
-
     public Time getArrivalTime() {
         return arrival_time;
-    }
-
-    public void setArrivalTime(Time arrival_time) {
-        this.arrival_time = arrival_time;
     }
 }

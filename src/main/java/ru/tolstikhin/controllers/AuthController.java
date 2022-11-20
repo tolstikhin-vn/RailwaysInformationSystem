@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -21,15 +22,8 @@ import java.util.ResourceBundle;
 
 public class AuthController extends MainApp implements Initializable {
 
-    public static Stage regStage = null;
-    public static Stage recoverStage = null;
-    @FXML
-    public TextField authLoginField;
-
-    @FXML
-    public PasswordField authPasswordField;
-    @FXML
-    public Text logEnErrorMessage;
+    public static Stage regStage = null; // Stage окна регистрации
+    public static Stage recoverStage = null; // Stage окна восстановления пароля
 
     public static int getUserId() {
         return userId;
@@ -39,7 +33,15 @@ public class AuthController extends MainApp implements Initializable {
         AuthController.userId = userId;
     }
 
-    public static int userId;
+    public static int userId; // id пользователя
+
+    @FXML
+    public TextField authLoginField;
+
+    @FXML
+    public PasswordField authPasswordField;
+    @FXML
+    public Text logEnErrorMessage;
 
     @FXML
     private void showRegWindow(MouseEvent event) {
@@ -52,13 +54,14 @@ public class AuthController extends MainApp implements Initializable {
 
         Scene registrationScene = new Scene(registration);
         Stage registrationWindow = new Stage();
+
+        registrationWindow.getIcons().add(new Image("images/railway_icon.png"));
         registrationWindow.setTitle("Регистрация");
         registrationWindow.setScene(registrationScene);
-
         registrationWindow.initModality(Modality.WINDOW_MODAL);
         registrationWindow.initOwner(MainApp.primaryStage);
-//        registrationWindow.initOwner(MainController.authStage);
         registrationWindow.show();
+        registrationWindow.setResizable(false);
         MainController.authStage.close();
 
         regStage = registrationWindow;
@@ -67,7 +70,7 @@ public class AuthController extends MainApp implements Initializable {
     @FXML
     private void logInToAccount() throws IOException {
         UserDAO userDAO = new UserDAO();
-        if (userDAO.selectData(authLoginField.getText(), authPasswordField.getText())) {
+        if (userDAO.isSelectData(authLoginField.getText(), authPasswordField.getText())) {
             setUserId(userDAO.selectId(authLoginField.getText(), authPasswordField.getText()));
 
             start(MainApp.primaryStage);
@@ -88,13 +91,18 @@ public class AuthController extends MainApp implements Initializable {
 
         Scene recoveringScene = new Scene(recovering);
         Stage recoveringWindow = new Stage();
+
+        recoveringWindow.getIcons().add(new Image("images/railway_icon.png"));
         recoveringWindow.setTitle("Восстановление");
         recoveringWindow.setScene(recoveringScene);
-
         recoveringWindow.initModality(Modality.WINDOW_MODAL);
         recoveringWindow.initOwner(MainApp.primaryStage);
+
+        // Закрываем окно авторизации
         MainController.authStage.close();
+
         recoveringWindow.show();
+        recoveringWindow.setResizable(false);
         recoverStage = recoveringWindow;
     }
 

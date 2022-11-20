@@ -19,9 +19,6 @@ public class Train {
     @Column(name = "train_number")
     private int train_number;
 
-//    @OneToMany(mappedBy = "train")
-//    private List<Route> routes;
-
     @OneToMany(mappedBy = "train")
     private List<Wagon> wagons;
 

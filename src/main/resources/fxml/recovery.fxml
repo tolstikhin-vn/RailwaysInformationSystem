@@ -20,7 +20,7 @@
          </font>
       </Text>
       <TextField fx:id="recoveryLoginField" focusTraversable="false" layoutX="35.0" layoutY="71.0" prefHeight="38.0" prefWidth="230.0" promptText="Логин" />
-      <Text fill="#666666" layoutX="35.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите ваш логин">
+      <Text fill="#666666" layoutX="35.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите ваш логин">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
@@ -30,7 +30,7 @@
             <Font name="Arial" size="18.0" />
          </font>
       </Text>
-      <Text fill="#666666" layoutX="34.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Повторите пароль">
+      <Text fill="#666666" layoutX="34.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Повторите пароль">
          <font>
             <Font name="Arial" size="18.0" />
          </font>

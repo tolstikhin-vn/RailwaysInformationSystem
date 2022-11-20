@@ -1,0 +1,1175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="mainAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="331.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tolstikhin.controllers.SeatSelectionController">
+   <children>
+      <ComboBox fx:id="numbOfWagonBox" layoutX="34.0" layoutY="37.0" prefHeight="30.0" prefWidth="78.0" promptText="Вагон" />
+      <Text layoutX="12.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Номер вагона">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
+      <AnchorPane fx:id="reservedSeats" layoutX="11.0" layoutY="99.0" prefHeight="162.0" prefWidth="962.0" visible="false">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="13.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="8.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="66.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="70.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="118.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="112.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="171.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="176.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="223.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="218.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="275.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="279.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="327.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="322.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="380.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="384.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="432.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="426.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="485.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="490.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="537.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="532.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="589.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="593.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="640.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="635.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="693.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="697.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="745.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="739.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="798.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="803.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="850.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="845.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="46.0" layoutX="902.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="53.0" layoutX="906.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" height="18.66" radius="8.83" width="18.66" />
+               </effect>
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="44.0" layoutY="102.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="11.0" layoutY="108.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="148.0" layoutY="101.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="115.0" layoutY="107.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="252.0" layoutY="101.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="219.0" layoutY="107.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="355.0" layoutY="100.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="323.0" layoutY="106.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="459.0" layoutY="100.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="426.0" layoutY="106.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="563.0" layoutY="99.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="530.0" layoutY="105.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="666.0" layoutY="99.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="634.0" layoutY="105.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="770.0" layoutY="99.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="737.0" layoutY="105.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="874.0" layoutY="98.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="40.0" fitWidth="67.0" layoutX="841.0" layoutY="104.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="compartmentSeats" layoutX="14.0" layoutY="110.0" prefHeight="126.0" prefWidth="967.0" visible="false">
+         <children>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="13.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="8.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="66.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="71.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="119.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="113.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="172.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="178.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="226.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="220.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="279.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="285.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="333.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="327.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="386.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="392.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="440.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="434.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="493.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="499.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="547.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="541.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="600.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="606.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="654.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="648.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="707.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="713.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="761.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="755.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="814.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="820.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="869.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="862.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="921.0" layoutY="8.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="927.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="svSeats" layoutX="9.0" layoutY="98.0" prefHeight="126.0" prefWidth="967.0" visible="false">
+         <children>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="8.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="71.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="113.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="178.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="220.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="285.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="327.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="392.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="434.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="499.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="541.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="606.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="648.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="713.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="755.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="820.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="862.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="67.0" fitWidth="40.0" layoutX="927.0" layoutY="39.0">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+               <effect>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="seats" layoutX="11.0" layoutY="99.0" prefHeight="184.0" prefWidth="962.0" visible="false">
+         <children>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="179.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="179.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="179.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="179.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="226.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="226.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="226.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="226.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="274.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="274.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="274.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="274.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="321.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="321.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="321.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="321.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="371.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="371.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="371.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="371.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="418.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="418.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="418.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="418.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="466.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="466.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="466.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="466.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="513.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="513.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="513.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="513.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="562.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="562.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="562.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="562.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="609.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="609.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="609.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="609.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="657.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="657.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="657.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="657.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="704.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="704.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="704.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="704.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="754.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="754.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="754.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="31.0" layoutX="754.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/seat.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Text fx:id="wagonTypeText" layoutX="135.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="120.0">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Text>
+      <Pane fx:id="continuePane" layoutX="707.0" layoutY="278.0" onMouseClicked="#continuePaneOnClicked" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: red;">
+         <children>
+            <Text fill="WHITE" layoutX="25.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Продолжить">
+               <font>
+                  <Font name="Arial Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

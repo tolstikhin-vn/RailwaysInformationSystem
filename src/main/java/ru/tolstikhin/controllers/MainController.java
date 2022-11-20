@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -28,9 +29,7 @@ import ru.tolstikhin.DAO.WagonDAO;
 import ru.tolstikhin.DAO.WagonTypeDAO;
 import ru.tolstikhin.HibernateUtil;
 import ru.tolstikhin.MainApp;
-import ru.tolstikhin.entities.Route;
 import ru.tolstikhin.entities.Schedule;
-import ru.tolstikhin.entities.Wagon;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,26 +39,50 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
+    private final String DEF_NUM_OF_PAGE = "1";
+
+    private final String DEF_PRICE_TABLEAU_STYLE = "-fx-background-color:  #f7f7f7; -fx-cursor: hand";
+    private final String NEW_PRICE_TABLEAU_STYLE = "-fx-background-color: #eaeaea; -fx-cursor: hand";
     public static Stage authStage = null;
     public static Stage accountStage = null;
-
     private static int userId;
+
+    private LinkedList<Pane> listOfPanes;
+
+    private List<Schedule> scheduleList;
+
+    private ObservableList<Node> objectsOfPane1;
+    private ObservableList<Node> objectsOfPane2;
+    private ObservableList<Node> objectsOfPane3;
+
+    private LinkedList<ObservableList<Node>> linkedList;
+    public LinkedList<Schedule> currShowedSchedules = new LinkedList<>();
+    private static Schedule currSchedule;
+
+    private static Stage seatSelectionStage;
 
     public static int getUserId() {
         return userId;
     }
 
-    @FXML
-    private Text arrivalDateText;
+    public static Stage getSeatSelectionStage() {
+        return seatSelectionStage;
+    }
 
-    @FXML
-    private Text arrivalTimeText;
+    public static Schedule getCurrSchedule() {
+        return currSchedule;
+    }
+
+    public static void setCurrSchedule(Schedule currSchedule) {
+        MainController.currSchedule = currSchedule;
+    }
 
     @FXML
     private TextField cityFromField;
@@ -69,12 +92,6 @@ public class MainController implements Initializable {
 
     @FXML
     private DatePicker departureDate;
-
-    @FXML
-    private Text departureDateText;
-
-    @FXML
-    private Text departureTimeText;
 
     @FXML
     private ImageView leftArrow;
@@ -92,63 +109,25 @@ public class MainController implements Initializable {
     private Text personalAccount;
 
     @FXML
-    private ImageView rightArrow;
+    private AnchorPane priceTableau1;
 
     @FXML
-    private Text routeNameText;
+    private AnchorPane priceTableau2;
+
+    @FXML
+    private AnchorPane priceTableau3;
+
+    @FXML
+    private ImageView rightArrow;
 
     @FXML
     private Pane routePanel1;
 
     @FXML
-    private Text stationFromText;
+    private Pane routePanel2;
 
     @FXML
-    private Text stationToText;
-
-    @FXML
-    private Text trainNameText;
-
-    @FXML
-    private Text travelTimeText;
-
-    @FXML
-    private Text freeSeatsText1;
-
-    @FXML
-    private Text freeSeatsText2;
-
-    @FXML
-    private Text freeSeatsText3;
-    @FXML
-    private Pane pricePane1;
-
-    @FXML
-    private Pane pricePane2;
-
-    @FXML
-    private Pane pricePane3;
-
-    @FXML
-    private AnchorPane priceTableau1;
-
-    @FXML
-    private Text priceText1;
-
-    @FXML
-    private Text priceText2;
-
-    @FXML
-    private Text priceText3;
-
-    @FXML
-    private Text wagonTypeText1;
-
-    @FXML
-    private Text wagonTypeText2;
-
-    @FXML
-    private Text wagonTypeText3;
+    private Pane routePanel3;
 
     @FXML
     void showAuthorizationWindow(MouseEvent event) {
@@ -159,10 +138,12 @@ public class MainController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        authorizationWindow.getIcons().add(new Image("images/railway_icon.png"));
         authorizationWindow.setTitle("Вход");
         authorizationWindow.initModality(Modality.WINDOW_MODAL);
         authorizationWindow.initOwner(MainApp.primaryStage);
         authorizationWindow.show();
+        authorizationWindow.setResizable(false);
 
         authStage = authorizationWindow;
     }
@@ -176,6 +157,8 @@ public class MainController implements Initializable {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+
+        accountWindow.getIcons().add(new Image("images/railway_icon.png"));
         accountWindow.setTitle("Профиль пользователя");
         accountWindow.initModality(Modality.WINDOW_MODAL);
         accountWindow.initOwner(MainApp.primaryStage);
@@ -185,51 +168,217 @@ public class MainController implements Initializable {
     }
 
     @FXML
+    void showTicketBuyWindow(MouseEvent event) {
+        showTicketByWindowMethod();
+    }
+
+    public void showTicketByWindowMethod() {
+        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/seatSelection.fxml")));
+        Stage seatSelectionWindow = new Stage();
+        try {
+            seatSelectionWindow.setScene(new Scene(loader.load()));
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        seatSelectionWindow.getIcons().add(new Image("images/railway_icon.png"));
+        seatSelectionWindow.setTitle("Выбор мест");
+        seatSelectionWindow.initModality(Modality.WINDOW_MODAL);
+        seatSelectionWindow.initOwner(MainApp.primaryStage);
+        seatSelectionWindow.show();
+
+        seatSelectionStage = seatSelectionWindow;
+    }
+
+    @FXML
     void showRoutes(MouseEvent event) {
         ScheduleDAO scheduleDAO = new ScheduleDAO();
-        List<Schedule> scheduleList = scheduleDAO.selectSchedules(cityFromField.getText(), cityToField.getText(), departureDate.getValue());
-        if (!scheduleList.isEmpty()) {
-            routePanel1.setVisible(true);
+        scheduleList = scheduleDAO.selectSchedules(cityFromField.getText(), cityToField.getText(), departureDate.getValue());
 
-            TrainDAO trainDAO = new TrainDAO();
-            RouteDAO routeDAO = new RouteDAO();
-            trainNameText.setText(trainDAO.selectTrainName(routeDAO.selectRoute(scheduleList.get(0).getScheduleId()).getRouteId()));
+        // Устанавливаем текущий номер страницы как 1, так как метод вызван первый раз нажатием кнопки "найти"
+        numOfPage.setText(DEF_NUM_OF_PAGE);
 
-            CityDAO cityDAO = new CityDAO();
-            routeNameText.setText(cityDAO.selectCityFrom((routeDAO.selectRoute(scheduleList.get(0).getScheduleId())).getStationFrom()) + " - " + cityDAO.selectCityTo((routeDAO.selectRoute(scheduleList.get(0).getScheduleId())).getStationTo()));
-            departureDateText.setText(dateToString(scheduleList.get(0).getDepartureDate().toLocalDate()));
-            arrivalDateText.setText(dateToString(scheduleList.get(0).getArrivalDate().toLocalDate()));
-            departureTimeText.setText(scheduleList.get(0).getDepartureTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
-            arrivalTimeText.setText(scheduleList.get(0).getArrivalTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+        showRoutsMethod(0, getIntervalSize());
+    }
 
-            travelTimeText.setText(calculateTravelTime(scheduleList.get(0).getDepartureDate().toLocalDate(),
-                    scheduleList.get(0).getArrivalDate().toLocalDate(),
-                    scheduleList.get(0).getDepartureTime().toLocalTime(),
-                    scheduleList.get(0).getArrivalTime().toLocalTime()));
-
-            StationDAO stationDAO = new StationDAO();
-            stationFromText.setText(stationDAO.selectStationFrom(routeDAO.selectRoute(scheduleList.get(0).getScheduleId()).getStationFrom()));
-            stationToText.setText(stationDAO.selectStationTo(routeDAO.selectRoute(scheduleList.get(0).getScheduleId()).getStationTo()));
-
-            fillPriceTableau(scheduleList);
+    @FXML
+    void showNextPage(MouseEvent event) {
+        int interval = scheduleList.size() - (scheduleList.size() - 3 * Integer.parseInt(numOfPage.getText()));
+        int intervalSize;
+        if (scheduleList.size() - 3 * Integer.parseInt(numOfPage.getText()) > 3) {
+            intervalSize = 3;
         } else {
-            routePanel1.setVisible(false);
+            intervalSize = scheduleList.size() - 3 * Integer.parseInt(numOfPage.getText());
+        }
+        numOfPage.setText(String.valueOf(Integer.parseInt(numOfPage.getText()) + 1));
+
+        priceTableau1.setVisible(false);
+        priceTableau2.setVisible(false);
+        priceTableau3.setVisible(false);
+        showRoutsMethod(interval, intervalSize);
+    }
+
+    @FXML
+    void showPreviousPage(MouseEvent event) {
+        numOfPage.setText(String.valueOf(Integer.parseInt(numOfPage.getText()) - 1));
+        int interval = scheduleList.size() - (scheduleList.size() - 3 * (Integer.parseInt(numOfPage.getText()) - 1));
+        int intervalSize = 3;
+
+        priceTableau1.setVisible(false);
+        priceTableau2.setVisible(false);
+        priceTableau3.setVisible(false);
+        showRoutsMethod(interval, intervalSize);
+    }
+
+    @FXML
+    void changeFirstPaneColor(MouseEvent event) {
+        routePanel1.setStyle(NEW_PRICE_TABLEAU_STYLE);
+        setCurrSchedule(currShowedSchedules.get(0));
+    }
+
+    @FXML
+    void changeSecondPaneColor(MouseEvent event) {
+        routePanel2.setStyle(NEW_PRICE_TABLEAU_STYLE);
+        setCurrSchedule(currShowedSchedules.get(1));
+    }
+
+    @FXML
+    void changeThirdPaneColor(MouseEvent event) {
+        routePanel3.setStyle(NEW_PRICE_TABLEAU_STYLE);
+        setCurrSchedule(currShowedSchedules.get(2));
+    }
+
+    @FXML
+    void changeFirstPaneDefColor(MouseEvent event) {
+        routePanel1.setStyle(DEF_PRICE_TABLEAU_STYLE);
+    }
+
+    @FXML
+    void changeSecondPaneDefColor(MouseEvent event) {
+        routePanel2.setStyle(DEF_PRICE_TABLEAU_STYLE);
+    }
+
+    @FXML
+    void changeThirdPaneDefColor(MouseEvent event) {
+        routePanel3.setStyle(DEF_PRICE_TABLEAU_STYLE);
+    }
+
+    private void showRoutsMethod(int interval, int intervalSize) {
+        setPaneVisibleFalse();
+
+        if (currShowedSchedules.size() != 0) {
+            currShowedSchedules.clear();
+        }
+
+        if (!scheduleList.isEmpty()) {
+            int pagesNumber = getPagesNumber(scheduleList.size());
+            pageNumber.setText(String.valueOf(pagesNumber));
+            setRightArrowDisable();
+            setLeftArrowDisable();
+            Pane currentPane;
+            int numOfVal = 0;
+            for (int i = interval; i < intervalSize + interval; ++i) {
+                currShowedSchedules.add(scheduleList.get(i));
+
+                currentPane = listOfPanes.get(numOfVal);
+                currentPane.setVisible(true);
+
+                TrainDAO trainDAO = new TrainDAO();
+
+                // Заполняем все поля в доступном к покупке рейсе
+                ((Text) linkedList.get(numOfVal).get(0)).setText(trainDAO.selectTrainName(scheduleList.get(i).getScheduleId()));
+
+                CityDAO cityDAO = new CityDAO();
+                RouteDAO routeDAO = new RouteDAO();
+                ((Text) linkedList.get(numOfVal).get(1)).setText(cityDAO.selectCityFrom((routeDAO.selectRoute(scheduleList.get(i).getScheduleId())).getStationFrom()) + " - " + cityDAO.selectCityTo((routeDAO.selectRoute(scheduleList.get(i).getScheduleId())).getStationTo()));
+                ((Text) linkedList.get(numOfVal).get(2)).setText(dateToString(scheduleList.get(i).getDepartureDate().toLocalDate()));
+                ((Text) linkedList.get(numOfVal).get(3)).setText(scheduleList.get(i).getDepartureTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+                ((Text) linkedList.get(numOfVal).get(5)).setText(dateToString(scheduleList.get(i).getArrivalDate().toLocalDate()));
+                ((Text) linkedList.get(numOfVal).get(6)).setText(scheduleList.get(i).getArrivalTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+
+
+                StationDAO stationDAO = new StationDAO();
+                ((Text) linkedList.get(numOfVal).get(7)).setText(stationDAO.selectStationFrom(routeDAO.selectRoute(scheduleList.get(i).getScheduleId()).getStationFrom()));
+                ((Text) linkedList.get(numOfVal).get(8)).setText(stationDAO.selectStationTo(routeDAO.selectRoute(scheduleList.get(i).getScheduleId()).getStationTo()));
+
+                ((Text) linkedList.get(numOfVal).get(9)).setText(calculateTravelTime(scheduleList.get(i).getDepartureDate().toLocalDate(),
+                        scheduleList.get(i).getArrivalDate().toLocalDate(),
+                        scheduleList.get(i).getDepartureTime().toLocalTime(),
+                        scheduleList.get(i).getArrivalTime().toLocalTime()));
+                ++numOfVal;
+            }
+            fillPriceTableau(scheduleList, interval, intervalSize);
+        } else {
+            for (Pane pane : listOfPanes) {
+                pane.setVisible(false);
+            }
         }
     }
 
-    private void fillPriceTableau(List<Schedule> scheduleList) {
+
+    // Получение длины интервала количества рейсов, показанных единовременно в одном окне
+    private int getIntervalSize() {
+        int size = scheduleList.size();
+
+        /* Если количество доступных рейсов больше 3-х, то из-за ограничения количества показанных
+         на главном окне рейсов (3) устанавливаем значение 3*/
+        if (size > 3) {
+            size = 3;
+        }
+        return size;
+    }
+
+    private void setPaneVisibleFalse() {
+        for (Pane pane : listOfPanes) {
+            pane.setVisible(false);
+        }
+    }
+
+    private void setRightArrowDisable() {
+        if (Integer.parseInt(pageNumber.getText()) != 1
+                && Integer.parseInt(numOfPage.getText()) != Integer.parseInt(pageNumber.getText())) {
+            rightArrow.setDisable(false);
+        } else {
+            rightArrow.setDisable(true);
+        }
+    }
+
+    private void setLeftArrowDisable() {
+        if (Integer.parseInt(numOfPage.getText()) != 1) {
+            leftArrow.setDisable(false);
+        } else {
+            leftArrow.setDisable(true);
+        }
+    }
+
+    private int getPagesNumber(int schedulesNumber) {
+        return (int) Math.ceil(schedulesNumber / 3.0);
+    }
+
+    /**
+     * Заполнение табло с ценами на билеты
+     *
+     * @param scheduleList Список доступных к покупке рейсов
+     * @param interval     Начало интервала
+     * @param intervalSize Длина интервала
+     */
+    private void fillPriceTableau(List<Schedule> scheduleList, int interval, int intervalSize) {
+        ObservableList<Node> listOfPricePanes1 = priceTableau1.getChildren();
+        ObservableList<Node> listOfPricePanes2 = priceTableau2.getChildren();
+        ObservableList<Node> listOfPricePanes3 = priceTableau3.getChildren();
+
+        LinkedList<ObservableList<Node>> listLinkedList = new LinkedList<>();
+        listLinkedList.add(listOfPricePanes1);
+        listLinkedList.add(listOfPricePanes2);
+        listLinkedList.add(listOfPricePanes3);
+
+        priceFillingCycle(interval, intervalSize, listLinkedList, scheduleList);
+    }
+
+    private void priceFillingCycle(int interval, int intervalSize, LinkedList<ObservableList<Node>> listLinkedList,
+                                   List<Schedule> scheduleList) {
         WagonDAO wagonDAO = new WagonDAO();
         WagonTypeDAO wagonTypeDAO = new WagonTypeDAO();
-        Long wagonTypesCount = wagonDAO.findWagonTypesCount(scheduleList.get(0).getTrainNumber());
-//        List<Wagon> wagonList = wagonDAO.findWagons(scheduleList.get(0).getTrain());
-
-//        int wagonTypesCount = 0;
-//        List<>
-//        for (Wagon wagon : wagonList) {
-//            wagon.
-//        }
-
-        ObservableList<Node> listOfPricePanes = priceTableau1.getChildren();
         ObservableList<Node> listOfTexts;
 
         SeatDAO seatDAO = new SeatDAO();
@@ -238,31 +387,46 @@ public class MainController implements Initializable {
 
         String wagonTypeName;
         int numOfPane = 0;
-        for (int i = 0; i < wagonTypesCount; ++i) {
-            listOfTexts = ((Pane) listOfPricePanes.get(numOfPane)).getChildren();
-            for (int j = 0; j < listOfTexts.size(); ++j) {
-                wagonTypeName = wagonTypeDAO.selectWagonsTypesNames(scheduleList.get(0).getTrainNumber()).get(i);
+        int pricePanesNum = 0;
+        for (int k = interval; k < intervalSize + interval; ++k) {
+            for (int i = 0; i < wagonDAO.findWagonTypesCount(scheduleList.get(k).getTrainNumber()); ++i) {
+                listOfTexts = ((Pane) listLinkedList.get(pricePanesNum).get(numOfPane)).getChildren();
+                for (int j = 0; j < listOfTexts.size(); ++j) {
+                    wagonTypeName = wagonTypeDAO.selectWagonsTypesNames(scheduleList.get(k).getTrainNumber()).get(i);
 
-                if (seatDAO.findFreeSeatsCount(scheduleList.get(0).getTrainNumber(), wagonTypeDAO.selectWagonTypeId(wagonTypeName)) != 0) {
-                    if (j == 0) {
-                        ((Text) listOfTexts.get(j)).setText(wagonTypeName);
-                    } else if (j == 1) {
-                        ((Text) listOfTexts.get(j)).setText(Long.toString(seatDAO.findFreeSeatsCount(scheduleList.get(0).getTrainNumber(), wagonTypeDAO.selectWagonTypeId(wagonTypeName))));
+                    if (seatDAO.findFreeSeatsCount(scheduleList.get(k).getTrainNumber(), wagonTypeDAO.selectWagonTypeId(wagonTypeName)) != 0) {
+                        if (j == 0) {
+                            ((Text) listOfTexts.get(j)).setText(wagonTypeName);
+                        } else if (j == 1) {
+                            ((Text) listOfTexts.get(j)).setText(Long.toString(seatDAO.findFreeSeatsCount(scheduleList.get(k).getTrainNumber(), wagonTypeDAO.selectWagonTypeId(wagonTypeName))));
+                        } else {
+                            ((Text) listOfTexts.get(j)).setText(dF.format(seatDAO.selectSeatPrice(scheduleList.get(k).getTrainNumber(), wagonTypeDAO.selectWagonTypeId(wagonTypeName))) + " ₽");
+                        }
+                        listLinkedList.get(pricePanesNum).get(numOfPane).getParent().setVisible(true);
+                        listLinkedList.get(pricePanesNum).get(numOfPane).setVisible(true);
                     } else {
-                        ((Text) listOfTexts.get(j)).setText(dF.format(seatDAO.selectSeatPrice(scheduleList.get(0).getTrainNumber(), wagonTypeDAO.selectWagonTypeId(wagonTypeName))) + " ₽");
+                        listLinkedList.get(pricePanesNum).get(numOfPane).setVisible(false);
+                        if (numOfPane != 0) {
+                            --numOfPane;
+                        }
+                        break;
                     }
-                } else {
-                    if (numOfPane != 0) {
-                        --numOfPane;
-                    }
-                    break;
                 }
+                ++numOfPane;
             }
-            listOfPricePanes.get(numOfPane).setVisible(true);
-            ++numOfPane;
+            numOfPane = 0;
+            ++pricePanesNum;
         }
     }
 
+    /**
+     * Вычисление времени в пути в разных еденицах измерения
+     * @param departureDate дата отправления
+     * @param arrivalDate дата прибытия
+     * @param departureTime время отправления
+     * @param arrivalTime время прибытия
+     * @return Время в виде строки в разных еденицах измерения
+     */
     private String calculateTravelTime(LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime) {
         LocalDateTime localDateTimeFrom = LocalDateTime.of(departureDate, departureTime);
         LocalDateTime localDateTimeTo = LocalDateTime.of(arrivalDate, arrivalTime);
@@ -316,11 +480,20 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Запуск базы данных
+     */
     private void startDatabase() {
         Session session = HibernateUtil.openSession();
         session.close();
     }
 
+    /**
+     * Преобразование даты в нужный формат для отображения в расписании рейса
+     *
+     * @param date Дата поездки
+     * @return Дата поездки в нужном строковом формате
+     */
     public String dateToString(LocalDate date) {
         return date.getDayOfMonth() + " " + getRuMonthName(date.getMonth().getValue()) + "., " + getRuDayName(date.getDayOfWeek().getValue());
     }
@@ -361,5 +534,19 @@ public class MainController implements Initializable {
         startDatabase();
         setPersonalAccount();
         disablePastDates();
+
+        listOfPanes = new LinkedList<>();
+        listOfPanes.add(routePanel1);
+        listOfPanes.add(routePanel2);
+        listOfPanes.add(routePanel3);
+
+        objectsOfPane1 = listOfPanes.get(0).getChildren();
+        objectsOfPane2 = listOfPanes.get(1).getChildren();
+        objectsOfPane3 = listOfPanes.get(2).getChildren();
+
+        linkedList = new LinkedList<>();
+        linkedList.add(objectsOfPane1);
+        linkedList.add(objectsOfPane2);
+        linkedList.add(objectsOfPane3);
     }
 }

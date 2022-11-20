@@ -4,7 +4,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import ru.tolstikhin.HibernateUtil;
-import ru.tolstikhin.entities.Route;
 import ru.tolstikhin.entities.Schedule;
 
 import java.time.LocalDate;
@@ -20,6 +19,13 @@ public class ScheduleDAO {
         sessionFactory = HibernateUtil.getSessionFactory();
     }
 
+    /**
+     * Выбрать список доступных расписаний маршрутов
+     * @param cityFrom город отправления
+     * @param cityTo город назначения
+     * @param departureDate дата отправления
+     * @return список расписаний
+     */
     public List<Schedule> selectSchedules(String cityFrom, String cityTo, LocalDate departureDate) {
         session = HibernateUtil.openSession();
         Query query = session.createQuery("FROM Schedule sc\n" +
