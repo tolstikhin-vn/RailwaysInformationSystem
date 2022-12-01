@@ -38,6 +38,18 @@ public class UserDAO {
         session.close();
     }
 
+    public boolean isLoginExist(String login) {
+        session = HibernateUtil.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<User> cq = builder.createQuery(User.class);
+        Root<User> root = cq.from(User.class);
+        cq.select(root).where(builder.equal(root.get("login"), login));
+        Query<User> query = session.createQuery(cq);
+        boolean result = query.getResultList().isEmpty();
+        session.close();
+        return result;
+    }
+
     /**
      * Проверить существование пользователя с такими данными
      * @param login логин

@@ -36,7 +36,7 @@ public class SeatDAO {
         Query query = session.createQuery("SELECT COUNT(s.seat_number)" +
                 "FROM Seat s\n" +
                 "INNER JOIN Wagon w ON w.wagon_number = s.wagon \n" +
-                "WHERE s.booked = false AND w.train = :paramTrainNumber AND w.wagon_type = :paramWagonType");
+                "WHERE w.train = :paramTrainNumber AND w.wagon_type = :paramWagonType AND s.booked = false");
         query.setParameter("paramTrainNumber", trainNumber);
         query.setParameter("paramWagonType", wagonType);
         Long FreeSeatsCount = (Long) query.getSingleResult();
@@ -86,6 +86,7 @@ public class SeatDAO {
      * @return место
      */
     public Seat selectSeat(int seatNumberInWagon, int wagonNumber) {
+        System.out.println(wagonNumber);
         session = HibernateUtil.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<Seat> cq = builder.createQuery(Seat.class);
@@ -101,10 +102,10 @@ public class SeatDAO {
      * Обновить значение занятости места
      * @param seatNumb номер места
      */
-    public void updateSeatBooked(int seatNumb) {
+    public void updateSeatBooked(int seatNumb, boolean isBooked) {
         session = HibernateUtil.openSession();
         Seat seat = session.get(Seat.class, seatNumb);
-        seat.setBooked(true);
+        seat.setBooked(isBooked);
         session.merge(seat);
         session.getTransaction().commit();
         session.close();

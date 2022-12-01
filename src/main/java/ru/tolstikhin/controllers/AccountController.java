@@ -8,18 +8,24 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import ru.tolstikhin.DAO.PassengerDAO;
+import ru.tolstikhin.DAO.SeatDAO;
+import ru.tolstikhin.DAO.TicketDAO;
 import ru.tolstikhin.DAO.UserDAO;
 import ru.tolstikhin.MainApp;
 import ru.tolstikhin.entities.Passenger;
+import ru.tolstikhin.entities.Ticket;
 import ru.tolstikhin.entities.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -30,8 +36,18 @@ public class AccountController extends MainApp implements Initializable {
     private final String FX_BACKGROUND_COLOR_RED = "-fx-background-color: red";
     private final String FX_BACKGROUND_NO_COLOR = "-fx-background-color: null";
     private final String PASSENGERS_TEXT = "Пассажиры";
+    private final String SUCCESSFUL_SAVING = "Данные успешно сохранены";
+    private final String INCORRECT_EMAIL = "Адрес электронной почты некорректный!";
+    private final String FILL_IN_DATA = "Чтобы добавлять пассажиров необходимо заполнить раздел \"Основная информация\" в профиле!";
+    private final String EMPTY_DATA_FIELDS = "Все поля должны быть заполнены!";
+    private final String EMAIL_REGEX = "^(?=(.{1,64}@))(?=(.{6,255}$))((([A-Za-zА-Яа-яЁё0-9_]+)(\\+"
+            + "[A-Za-z0-9А-Яа-яЁё\\-_]+)?)@(([A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\\-_]*\\.)+([A-Za-zА-Яа-яЁё0-9]{2,})"
+            + "|(((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]"
+            + "|[1-9][0-9]|[0-9]))))$";
 
     private int userId;
+
+    private List<Ticket> listOfTickets;
 
     public int getUserId() {
         return userId;
@@ -46,6 +62,21 @@ public class AccountController extends MainApp implements Initializable {
 
     @FXML
     private Button addPassengerButton;
+
+    @FXML
+    private Button returnTicketButtonByPass;
+
+    @FXML
+    private Text arrivalDateText;
+
+    @FXML
+    private Text arrivalTimeText;
+
+    @FXML
+    private Text departureDateText;
+
+    @FXML
+    private Text departureTimeText;
 
     @FXML
     private Pane femaleGender;
@@ -69,7 +100,22 @@ public class AccountController extends MainApp implements Initializable {
     private TextField mySurnameField;
 
     @FXML
-    private Text orders;
+    private Text orderNumber;
+
+    @FXML
+    private Text ticketPrice;
+
+    @FXML
+    private Pane orders;
+
+    @FXML
+    private ListView<String> ordersListView;
+
+    @FXML
+    private Pane ordersPane;
+
+    @FXML
+    private Pane adminPane;
 
     @FXML
     private DatePicker passBirthday;
@@ -93,7 +139,7 @@ public class AccountController extends MainApp implements Initializable {
     private TextField passSurname;
 
     @FXML
-    private Text passengers;
+    private Pane passengers;
 
     @FXML
     private ComboBox<String> passengersList;
@@ -102,13 +148,37 @@ public class AccountController extends MainApp implements Initializable {
     private Pane passengersPane;
 
     @FXML
-    private Text profile;
+    private Pane profile;
 
     @FXML
     private Pane profilePane;
 
     @FXML
+    private Text routeNameText;
+
+    @FXML
+    private Pane orderInformation;
+
+    @FXML
+    private Button returnTicketButton;
+
+    @FXML
+    private TextField ticketNumberTextField;
+
+    @FXML
     private Button savePassenger;
+
+    @FXML
+    private Text stationFromText;
+
+    @FXML
+    private Text stationToText;
+
+    @FXML
+    private Text trainNameText;
+
+    @FXML
+    private Text travelTimeText;
 
     @FXML
     void chooseFemaleGender(MouseEvent event) {
@@ -144,37 +214,102 @@ public class AccountController extends MainApp implements Initializable {
 
     @FXML
     void saveData(MouseEvent event) {
-        UserDAO userDAO = new UserDAO();
-
-        userDAO.insertData(getUserId(),
-                myNameField.getText(),
-                mySurnameField.getText(),
-                myEmailField.getText(),
-                getGender(maleGender, femaleGender));
-        showAlertWindow();
-    }
-
-    @FXML
-    void showOrders(MouseEvent event) {
-
+        if (!myNameField.getText().isBlank()
+                && !mySurnameField.getText().isBlank()
+                && !myEmailField.getText().isBlank()
+                && (maleGender.getStyle().equals(FX_BACKGROUND_COLOR_RED) || femaleGender.getStyle().equals(FX_BACKGROUND_COLOR_RED))) {
+            if (myEmailField.getText().matches(EMAIL_REGEX)) {
+                UserDAO userDAO = new UserDAO();
+                userDAO.insertData(getUserId(),
+                        myNameField.getText(),
+                        mySurnameField.getText(),
+                        myEmailField.getText(),
+                        getGender(maleGender, femaleGender));
+                showAlertWindow(SUCCESSFUL_SAVING);
+            } else {
+                showAlertWindow(INCORRECT_EMAIL);
+            }
+        } else {
+            showAlertWindow(EMPTY_DATA_FIELDS);
+        }
     }
 
     @FXML
     void showPassengers(MouseEvent event) {
-        profilePane.setVisible(false);
-        infAboutPassenger.setVisible(false);
-        passengersPane.setVisible(true);
-        if (!passengersList.getSelectionModel().isEmpty()) {
-            passengersList.getSelectionModel().clearSelection();
-            passengersList.setPromptText(PASSENGERS_TEXT);
+        UserDAO userDAO = new UserDAO();
+        if (userDAO.selectUser().getName() != null
+                && userDAO.selectUser().getSurname() != null
+                && userDAO.selectUser().getEmail() != null
+                && userDAO.selectUser().getGender() != null) {
+            profilePane.setVisible(false);
+            infAboutPassenger.setVisible(false);
+            ordersPane.setVisible(false);
+            passengersPane.setVisible(true);
+            if (!passengersList.getSelectionModel().isEmpty()) {
+                passengersList.getSelectionModel().clearSelection();
+                passengersList.setPromptText(PASSENGERS_TEXT);
+            }
+        } else {
+            showAlertWindow(FILL_IN_DATA);
         }
     }
 
     @FXML
     void showProfile(MouseEvent event) {
+        ordersListView.getSelectionModel().clearSelection();
+        orderInformation.setVisible(false);
+        returnTicketButtonByPass.setVisible(false);
+        showProfileMethod();
+
+    }
+
+    @FXML
+    void showOrders(MouseEvent event) {
+        ordersListView.getSelectionModel().clearSelection();
+        orderInformation.setVisible(false);
+        returnTicketButtonByPass.setVisible(false);
+        profilePane.setVisible(false);
         passengersPane.setVisible(false);
-        profilePane.setVisible(true);
-        infAboutPassenger.setVisible(false);
+        ordersPane.setVisible(true);
+
+        showOrdersList();
+        eventUpdateHandlers();
+    }
+
+    private void showOrdersList() {
+        ObservableList<String> orders = FXCollections.observableArrayList();
+        TicketDAO ticketDAO = new TicketDAO();
+        listOfTickets = ticketDAO.selectListOfTickets(MainController.getUserId());
+        for (Ticket ticket : listOfTickets) {
+            orders.add(Integer.toString(ticket.getTicketNumber()));
+        }
+        ordersListView.setItems(orders);
+    }
+
+    private void eventUpdateHandlers() {
+        if (!ordersListView.getItems().isEmpty()) {
+            ordersListView.setOnMouseClicked(event -> {
+                returnTicketButtonByPass.setVisible(true);
+                orderInformation.setVisible(true);
+                MainController mainController = new MainController();
+                Ticket ticket = listOfTickets.get(ordersListView.getSelectionModel().getSelectedIndex());
+                orderNumber.setText(Integer.toString(ticket.getTicketNumber()));
+                ticketPrice.setText(ticket.getPrice() + " Р");
+                trainNameText.setText(ticket.getTrainName());
+                routeNameText.setText(ticket.getCityFrom() + " - " + ticket.getCityTo());
+                departureDateText.setText(ticket.getDepartureDate().toString());
+                departureTimeText.setText(ticket.getDepartureTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+                arrivalDateText.setText(ticket.getArrivalDate().toString());
+                arrivalTimeText.setText(ticket.getArrivalTime().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+                stationFromText.setText(ticket.getStationFrom());
+                stationToText.setText(ticket.getStationTo());
+                stationToText.setText(ticket.getStationTo());
+                travelTimeText.setText(mainController.calculateTravelTime(ticket.getDepartureDate().toLocalDate(),
+                        ticket.getArrivalDate().toLocalDate(),
+                        ticket.getDepartureTime().toLocalTime(),
+                        ticket.getArrivalTime().toLocalTime()));
+            });
+        }
     }
 
     @FXML
@@ -204,7 +339,7 @@ public class AccountController extends MainApp implements Initializable {
                 passenger.getBirthdate(),
                 passenger.getPassportData(),
                 passenger.getGender());
-        showAlertWindow();
+        showAlertWindow(SUCCESSFUL_SAVING);
     }
 
     @FXML
@@ -218,21 +353,67 @@ public class AccountController extends MainApp implements Initializable {
                 getGender(passMaleGender, passFemaleGender));
     }
 
+    @FXML
+    void returnTicket(MouseEvent event) {
+        TicketDAO ticketDAO = new TicketDAO();
+        SeatDAO seatDAO = new SeatDAO();
+        Ticket currentTicket = getTicket();
+        seatDAO.updateSeatBooked(seatDAO.selectSeat(currentTicket.getSeatNumber(), currentTicket.getWagonNumber()).getSeatNumber(), false);
+        ticketDAO.deleteTicket(currentTicket.getTicketNumber());
+        showOrdersList();
+        eventUpdateHandlers();
+        orderInformation.setVisible(false);
+        returnTicketButtonByPass.setVisible(false);
+    }
+
+    private Ticket getTicket() {
+        return listOfTickets.get(ordersListView.getSelectionModel().getSelectedIndex());
+    }
+
+    @FXML
+    void findTicket(MouseEvent event) {
+        TicketDAO ticketDAO = new TicketDAO();
+        returnTicketButton.setDisable(!ticketDAO.isTicketExist(Integer.parseInt(ticketNumberTextField.getText())));
+    }
+
+    @FXML
+    void returnTicketByAdmin(MouseEvent event) {
+        TicketDAO ticketDAO = new TicketDAO();
+        SeatDAO seatDAO = new SeatDAO();
+        Ticket currentTicket = ticketDAO.selectTicket(Integer.parseInt(ticketNumberTextField.getText()));
+        seatDAO.updateSeatBooked(seatDAO.selectSeat(currentTicket.getSeatNumber(), currentTicket.getWagonNumber()).getSeatNumber(), false);
+        ticketDAO.deleteTicket(currentTicket.getTicketNumber());
+        ticketNumberTextField.setText("");
+        returnTicketButton.setDisable(true);
+        showAlertReturnWindow();
+    }
+
+    private void showProfileMethod() {
+        profile.setVisible(true);
+        orders.setVisible(true);
+        passengers.setVisible(true);
+        passengersPane.setVisible(false);
+        ordersPane.setVisible(false);
+        adminPane.setVisible(false);
+        profilePane.setVisible(true);
+    }
+
     /**
      * Показать информационное окно
      */
-    private void showAlertWindow() {
+    private void showAlertWindow(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Информация");
         alert.setHeaderText(null);
-        alert.setContentText("Данные успешно сохранены");
+        alert.setContentText(message);
 
         alert.showAndWait();
     }
 
     /**
      * Получить ообозначение пола пользователя
-     * @param maleGenderPane Pane с мужским полом
+     *
+     * @param maleGenderPane   Pane с мужским полом
      * @param femaleGenderPane Pane с женским полом
      * @return обозначение пола
      */
@@ -273,6 +454,7 @@ public class AccountController extends MainApp implements Initializable {
 
     /**
      * Заполнить ComboBox пассажиров пассажирами, связанными с авторизированным аккаунтом
+     *
      * @param passList ComboBox пассажиров
      */
     public void showPassengersList(ComboBox<String> passList) {
@@ -287,7 +469,6 @@ public class AccountController extends MainApp implements Initializable {
     }
 
     /**
-     *
      * @param passengerIndex индекс выбранного пассажира в ComboBox
      */
     private void showInfAboutPassenger(int passengerIndex) {
@@ -326,11 +507,30 @@ public class AccountController extends MainApp implements Initializable {
         passFemaleGender.setStyle(FX_BACKGROUND_NO_COLOR);
     }
 
+    private void showAlertReturnWindow() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Информация");
+        alert.setHeaderText(null);
+        alert.setContentText("Билет возвращен!");
+
+        alert.showAndWait();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Навесить обработчики событий кликов мыши по элементам выпадающего списка пассажиров
-        passengersList.setOnAction(event -> showInfAboutPassenger(passengersList.getSelectionModel().getSelectedIndex()));
-        fillLogin();
-        fillOtherData();
+        UserDAO userDAO = new UserDAO();
+        if (userDAO.selectUser().getRole().getId() == 2) {
+            // Навесить обработчики событий кликов мыши по элементам выпадающего списка пассажиров
+            passengersList.setOnAction(event -> showInfAboutPassenger(passengersList.getSelectionModel().getSelectedIndex()));
+            showProfileMethod();
+            fillLogin();
+            fillOtherData();
+        } else if (userDAO.selectUser().getRole().getId() == 1) {
+            profile.setVisible(false);
+            orders.setVisible(false);
+            passengers.setVisible(false);
+            profilePane.setVisible(false);
+            adminPane.setVisible(true);
+        }
     }
 }

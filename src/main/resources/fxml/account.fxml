@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -13,27 +14,12 @@
 
 <AnchorPane prefHeight="343.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tolstikhin.controllers.AccountController">
    <children>
-      <ImageView fitHeight="75.0" fitWidth="74.0" layoutX="35.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="75.0" fitWidth="74.0" layoutX="41.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/user.png" />
          </image>
       </ImageView>
-      <Text fx:id="profile" layoutX="36.0" layoutY="121.0" onMouseClicked="#showProfile" strokeType="OUTSIDE" strokeWidth="0.0" text="Профиль">
-         <font>
-            <Font name="Arial" size="20.0" />
-         </font>
-      </Text>
-      <Text fx:id="orders" layoutX="36.0" layoutY="155.0" onMouseClicked="#showOrders" strokeType="OUTSIDE" strokeWidth="0.0" text="Мои заказы">
-         <font>
-            <Font name="Arial" size="20.0" />
-         </font>
-      </Text>
-      <Text fx:id="passengers" layoutX="37.0" layoutY="188.0" onMouseClicked="#showPassengers" strokeType="OUTSIDE" strokeWidth="0.0" text="Пассажиры">
-         <font>
-            <Font name="Arial" size="20.0" />
-         </font>
-      </Text>
-      <Pane fx:id="profilePane" layoutX="160.0" layoutY="14.0" prefHeight="327.0" prefWidth="562.0">
+      <Pane fx:id="profilePane" layoutX="160.0" layoutY="8.0" prefHeight="327.0" prefWidth="562.0" visible="false">
          <children>
             <Text layoutX="13.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Мой логин">
                <font>
@@ -120,9 +106,9 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="passengersPane" layoutX="160.0" layoutY="8.0" prefHeight="330.0" prefWidth="562.0" visible="false">
+      <Pane fx:id="passengersPane" layoutX="160.0" layoutY="8.0" prefHeight="327.0" prefWidth="562.0" visible="false">
          <children>
-            <Pane fx:id="infAboutPassenger" layoutY="55.0" prefHeight="275.0" prefWidth="562.0">
+            <Pane fx:id="infAboutPassenger" layoutY="54.0" prefHeight="275.0" prefWidth="562.0">
                <children>
                   <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Основная информация">
                      <font>
@@ -133,7 +119,7 @@
                   <TextField fx:id="passSurname" focusTraversable="false" layoutX="14.0" layoutY="46.0" prefHeight="25.0" prefWidth="150.0" />
                   <Text layoutX="174.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя" />
                   <TextField fx:id="passName" focusTraversable="false" layoutX="174.0" layoutY="46.0" prefHeight="25.0" prefWidth="150.0" />
-                  <Text layoutX="335.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество" />
+                  <Text layoutX="335.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Отчество (при наличии)" />
                   <TextField fx:id="passPatronymic" focusTraversable="false" layoutX="334.0" layoutY="46.0" prefHeight="25.0" prefWidth="150.0" />
                   <Text layoutX="14.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пол" />
                   <Text layoutX="250.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дата рождения" />
@@ -144,8 +130,6 @@
                      </font>
                   </Text>
                   <TextField fx:id="passPassportData" focusTraversable="false" layoutX="15.0" layoutY="172.0" promptText="XXXX XXXXXX" />
-                  <Button fx:id="savePassenger" layoutX="355.0" layoutY="231.0" mnemonicParsing="false" onMouseClicked="#savePassengerData" text="Сохранить" />
-                  <Button fx:id="addPassenger" layoutX="271.0" layoutY="231.0" mnemonicParsing="false" onMouseClicked="#addNewPassenger" text="Добавить" />
                   <Pane fx:id="passMaleGender" layoutX="10.0" layoutY="95.0" onMouseClicked="#choosePassMaleGender" prefHeight="35.0" prefWidth="107.0">
                      <children>
                         <Text layoutX="10.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Мужской">
@@ -164,10 +148,146 @@
                         </Text>
                      </children>
                   </Pane>
+                  <Button fx:id="addPassenger" layoutX="434.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#addNewPassenger" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #01abfb; -fx-cursor: hand;" text="Добавить" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="savePassenger" layoutX="434.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#savePassengerData" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #01abfb; -fx-cursor: hand;" text="Сохранить" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
             <ComboBox fx:id="passengersList" focusTraversable="false" layoutX="7.0" layoutY="5.0" onMouseClicked="#showPassengersOnClicked" prefHeight="25.0" prefWidth="231.0" promptText="Пассажиры" />
             <Button fx:id="addPassengerButton" focusTraversable="false" layoutX="246.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#showAddingPassenger" text="Добавить пассажира" />
+         </children>
+      </Pane>
+      <Pane fx:id="ordersPane" layoutX="160.0" layoutY="8.0" prefHeight="327.0" prefWidth="562.0">
+         <children>
+            <ListView fx:id="ordersListView" fixedCellSize="0.0" focusTraversable="false" layoutX="27.0" layoutY="14.0" prefHeight="120.0" prefWidth="509.0" />
+            <Pane fx:id="orderInformation" layoutX="27.0" layoutY="134.0" prefHeight="146.0" prefWidth="509.0" style="-fx-background-color: #f7f7f7;">
+               <children>
+                  <Text fx:id="trainNameText" layoutX="54.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="130.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="routeNameText" layoutX="184.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="270.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="departureDateText" fill="#5b5b5b" layoutX="54.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="95.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="departureTimeText" layoutX="51.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="100.0">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="154.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/dotted_line.png" />
+                     </image>
+                  </ImageView>
+                  <Text fx:id="arrivalDateText" fill="#5b5b5b" layoutX="356.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="95.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="arrivalTimeText" layoutX="352.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="100.0">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stationFromText" layoutX="55.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="188.0">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="stationToText" layoutX="264.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="188.0">
+                     <font>
+                        <Font name="Arial" size="12.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="travelTimeText" fill="#5b5b5b" layoutX="199.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="110.0">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="7.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Заказ №">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="orderNumber" layoutX="82.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.0">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="232.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Стоимость:" wrappingWidth="100.0">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="ticketPrice" layoutX="330.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.0">
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Button fx:id="returnTicketButtonByPass" layoutX="422.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#returnTicket" prefHeight="31.0" prefWidth="139.0" style="-fx-background-color: #f20d33; -fx-cursor: hand;" text="Вернуть билет" textFill="WHITE" visible="false">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="adminPane" layoutX="160.0" layoutY="8.0" prefHeight="327.0" prefWidth="562.0" visible="false">
+         <children>
+            <TextField fx:id="ticketNumberTextField" focusTraversable="false" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="175.0" promptText="Номер билета" />
+            <Button layoutX="14.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#findTicket" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #01abfb; -fx-cursor: hand;" text="Найти" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="returnTicketButton" disable="true" layoutX="14.0" layoutY="115.0" mnemonicParsing="false" onMouseClicked="#returnTicketByAdmin" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #f20d33; -fx-cursor: hand;" text="Вернуть" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="profile" layoutX="13.0" layoutY="105.0" onMouseClicked="#showProfile" prefHeight="30.0" prefWidth="130.0" style="-fx-cursor: hand;">
+         <children>
+            <Text layoutX="22.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Профиль">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane fx:id="orders" layoutX="13.0" layoutY="135.0" onMouseClicked="#showOrders" prefHeight="30.0" prefWidth="130.0" style="-fx-cursor: hand;">
+         <children>
+            <Text fx:id="profile1" layoutX="11.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Мои заказы">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+      <Pane fx:id="passengers" layoutX="13.0" layoutY="165.0" onMouseClicked="#showPassengers" prefHeight="30.0" prefWidth="130.0" style="-fx-cursor: hand;">
+         <children>
+            <Text fx:id="profile11" layoutX="12.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пассажиры">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
    </children>

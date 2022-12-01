@@ -67,6 +67,11 @@ public class User {
     public String getGender() {
         return gender;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
     public void setName(String name) {
         this.name = name;
     }

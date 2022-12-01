@@ -25,7 +25,7 @@
             <Font name="Arial" size="18.0" />
          </font>
       </Text>
-      <Button layoutX="34.0" layoutY="190.0" mnemonicParsing="false" onMouseClicked="#registerUser" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #01abfb; -fx-cursor: hand;" text="Зарегистрироваться" textFill="WHITE">
+      <Button fx:id="regButton" disable="true" layoutX="34.0" layoutY="190.0" mnemonicParsing="false" onMouseClicked="#registerUser" prefHeight="38.0" prefWidth="230.0" style="-fx-background-color: #01abfb; -fx-cursor: hand;" text="Зарегистрироваться" textFill="WHITE">
          <font>
             <Font name="Arial" size="19.0" />
          </font>

@@ -53,20 +53,16 @@ public class MainController implements Initializable {
     public static Stage authStage = null;
     public static Stage accountStage = null;
     private static int userId;
+    private static Schedule currSchedule;
+    private static Stage seatSelectionStage;
 
     private LinkedList<Pane> listOfPanes;
-
     private List<Schedule> scheduleList;
-
     private ObservableList<Node> objectsOfPane1;
     private ObservableList<Node> objectsOfPane2;
     private ObservableList<Node> objectsOfPane3;
-
     private LinkedList<ObservableList<Node>> linkedList;
     public LinkedList<Schedule> currShowedSchedules = new LinkedList<>();
-    private static Schedule currSchedule;
-
-    private static Stage seatSelectionStage;
 
     public static int getUserId() {
         return userId;
@@ -372,11 +368,13 @@ public class MainController implements Initializable {
         listLinkedList.add(listOfPricePanes2);
         listLinkedList.add(listOfPricePanes3);
 
+        setDefaultPriceTableauFields();
         priceFillingCycle(interval, intervalSize, listLinkedList, scheduleList);
     }
 
     private void priceFillingCycle(int interval, int intervalSize, LinkedList<ObservableList<Node>> listLinkedList,
                                    List<Schedule> scheduleList) {
+
         WagonDAO wagonDAO = new WagonDAO();
         WagonTypeDAO wagonTypeDAO = new WagonTypeDAO();
         ObservableList<Node> listOfTexts;
@@ -405,7 +403,6 @@ public class MainController implements Initializable {
                         listLinkedList.get(pricePanesNum).get(numOfPane).getParent().setVisible(true);
                         listLinkedList.get(pricePanesNum).get(numOfPane).setVisible(true);
                     } else {
-                        listLinkedList.get(pricePanesNum).get(numOfPane).setVisible(false);
                         if (numOfPane != 0) {
                             --numOfPane;
                         }
@@ -420,14 +417,29 @@ public class MainController implements Initializable {
     }
 
     /**
+     * Скрыть поля с ценами
+     */
+    private void setDefaultPriceTableauFields() {
+        ObservableList<Node> observableList1 = priceTableau1.getChildren();
+        ObservableList<Node> observableList2 = priceTableau1.getChildren();
+        ObservableList<Node> observableList3 = priceTableau1.getChildren();
+        for (int i = 0; i < observableList1.size(); ++i) {
+            observableList1.get(i).setVisible(false);
+            observableList2.get(i).setVisible(false);
+            observableList3.get(i).setVisible(false);
+        }
+    }
+
+    /**
      * Вычисление времени в пути в разных еденицах измерения
+     *
      * @param departureDate дата отправления
-     * @param arrivalDate дата прибытия
+     * @param arrivalDate   дата прибытия
      * @param departureTime время отправления
-     * @param arrivalTime время прибытия
+     * @param arrivalTime   время прибытия
      * @return Время в виде строки в разных еденицах измерения
      */
-    private String calculateTravelTime(LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime) {
+    public String calculateTravelTime(LocalDate departureDate, LocalDate arrivalDate, LocalTime departureTime, LocalTime arrivalTime) {
         LocalDateTime localDateTimeFrom = LocalDateTime.of(departureDate, departureTime);
         LocalDateTime localDateTimeTo = LocalDateTime.of(arrivalDate, arrivalTime);
         long mills = Duration.between(localDateTimeFrom, localDateTimeTo).toMillis();

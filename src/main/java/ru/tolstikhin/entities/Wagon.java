@@ -31,6 +31,10 @@ public class Wagon {
     @OneToMany(mappedBy = "wagon")
     private List<Seat> seats;
 
+    public int getWagonNumber() {
+        return wagon_number;
+    }
+
     public int getWagonNumberOnTrain() {
         return wagon_number_on_train;
     }

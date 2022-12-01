@@ -55,8 +55,10 @@ public class SeatSelectionController implements Initializable {
     private final String SEAT_IMAGE = "/images/seat.png";
     private final String SELECTED_SEAT_IMAGE = "/images/selected_seat.png";
     private final String CURSOR_HAND_STYLE = "-fx-cursor: hand";
+    private final String NULL_CURSOR_HAND_STYLE = "-fx-cursor: null";
 
     private static int numberOfWagon; // Номер вагона
+    private static int wagonNumberOnTrain; // Номер вагона в поезде
 
     private static int seatIndex; // Индекс выбранного места в вагоне
 
@@ -66,10 +68,17 @@ public class SeatSelectionController implements Initializable {
         return numberOfWagon;
     }
 
+    public static int getWagonNumberOnTrain() {
+        return wagonNumberOnTrain;
+    }
+
     public static void setNumberOfWagon(int numberOfWagon) {
         SeatSelectionController.numberOfWagon = numberOfWagon;
     }
 
+    public static void setWagonNumberOnTrain(int wagonNumberOnTrain) {
+        SeatSelectionController.wagonNumberOnTrain = wagonNumberOnTrain;
+    }
 
     public static Stage getBuyWindowStage() {
         return buyWindowStage;
@@ -77,10 +86,6 @@ public class SeatSelectionController implements Initializable {
 
     public static int getSeatIndex() {
         return seatIndex;
-    }
-
-    public static void setSeatIndex(int seatIndex) {
-        SeatSelectionController.seatIndex = seatIndex;
     }
 
     @FXML
@@ -112,7 +117,11 @@ public class SeatSelectionController implements Initializable {
     }
 
     private void showSeats(int wagonNumber) {
-        setNumberOfWagon(wagonNumber);
+
+        WagonDAO wagonDAO = new WagonDAO();
+        setNumberOfWagon(wagonDAO.selectWagon(wagonNumber, MainController.getCurrSchedule().getTrainNumber()).getWagonNumber());
+        setWagonNumberOnTrain(wagonNumber);
+
         reservedSeats.setVisible(false);
         compartmentSeats.setVisible(false);
         svSeats.setVisible(false);
@@ -120,8 +129,7 @@ public class SeatSelectionController implements Initializable {
 
         SeatDAO seatDAO = new SeatDAO();
 
-        WagonDAO wagonDAO = new WagonDAO();
-        List<Seat> list = seatDAO.selectFreeSeats(wagonNumber);
+        List<Seat> list = seatDAO.selectFreeSeats(getNumberOfWagon());
         int wagonTypeNumber = wagonDAO.selectWagon(numbOfWagonBox.getValue(), MainController.getCurrSchedule().getTrainNumber()).getWagonType();
 
         ObservableList<Node> listOfSeatImages = getListOfSeatImages(wagonTypeNumber);
@@ -201,7 +209,7 @@ public class SeatSelectionController implements Initializable {
     private void setDefaultSeats(ObservableList<Node> listOfSeatImages) {
         for (Node node : listOfSeatImages) {
             ((ImageView) node).setImage(new Image(SEAT_IMAGE));
-            node.setStyle("-fx-cursor: null");
+            node.setStyle(NULL_CURSOR_HAND_STYLE);
         }
     }
 
