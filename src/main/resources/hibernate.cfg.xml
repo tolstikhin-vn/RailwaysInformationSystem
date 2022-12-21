@@ -8,8 +8,8 @@
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/railways_db</property>
         <property name="hibernate.connection.username">mysql</property>
-        <property name="hibernate.connection.password">vladimir1602</property>
-        <property name="show_sql">true</property>
+        <property name="hibernate.connection.password">mysql_user1_password</property>
+<!--        <property name="show_sql">true</property>-->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.current_session_context_class">thread</property>
@@ -27,6 +27,6 @@
         <mapping class="ru.tolstikhin.entities.Wagon"/>
         <mapping class="ru.tolstikhin.entities.WagonType"/>
         <mapping class="ru.tolstikhin.entities.Schedule"/>
-        <mapping class="ru.tolstikhin.entities.TrainStation"/>
+        <mapping class="ru.tolstikhin.entities.Transaction"/>
     </session-factory>
 </hibernate-configuration>

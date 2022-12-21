@@ -7,12 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -49,11 +50,13 @@ public class SeatSelectionController implements Initializable {
     private Text wagonTypeText;
 
     @FXML
-    private Pane continuePane;
+    private Button continueButton;
 
     private final String FREE_SEAT_IMAGE = "/images/free_seat.png";
     private final String SEAT_IMAGE = "/images/seat.png";
     private final String SELECTED_SEAT_IMAGE = "/images/selected_seat.png";
+
+    private final String USER_IS_NOT_LOGGED_IN = "Для оформления билета необходимо войти в систему!";
     private final String CURSOR_HAND_STYLE = "-fx-cursor: hand";
     private final String NULL_CURSOR_HAND_STYLE = "-fx-cursor: null";
 
@@ -89,20 +92,40 @@ public class SeatSelectionController implements Initializable {
     }
 
     @FXML
-    void continuePaneOnClicked(MouseEvent event) {
-        FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/buy.fxml")));
-        Stage buyWindow = new Stage();
-        try {
-            buyWindow.setScene(new Scene(loader.load()));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+    void continueButtonClicked(MouseEvent event) {
+        if (isLoggedIn()) {
+            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("fxml/buy.fxml")));
+            Stage buyWindow = new Stage();
+            try {
+                buyWindow.setScene(new Scene(loader.load()));
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
 
-        buyWindow.getIcons().add(new Image("images/railway_icon.png"));
-        buyWindow.setTitle("Покупка билета");
-        buyWindow.initModality(Modality.WINDOW_MODAL);
-        buyWindow.show();
-        buyWindowStage = buyWindow;
+            buyWindow.getIcons().add(new Image("images/railway_icon.png"));
+            buyWindow.setTitle("Покупка билета");
+            buyWindow.initModality(Modality.WINDOW_MODAL);
+            buyWindow.show();
+            buyWindowStage = buyWindow;
+        } else {
+            showAlertWindow(USER_IS_NOT_LOGGED_IN);
+        }
+    }
+
+    private boolean isLoggedIn() {
+        return MainController.getUserId() != 0;
+    }
+
+    /**
+     * Показать информационное окно
+     */
+    private void showAlertWindow(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Информация");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 
     private void showWagons(Schedule currSchedule) {

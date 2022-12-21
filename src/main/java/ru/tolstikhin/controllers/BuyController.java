@@ -11,12 +11,14 @@ import ru.tolstikhin.DAO.SeatDAO;
 import ru.tolstikhin.DAO.StationDAO;
 import ru.tolstikhin.DAO.TicketDAO;
 import ru.tolstikhin.DAO.TrainDAO;
+import ru.tolstikhin.DAO.TransactionDAO;
 import ru.tolstikhin.DAO.WagonDAO;
 import ru.tolstikhin.DAO.WagonTypeDAO;
 import ru.tolstikhin.entities.Passenger;
 import ru.tolstikhin.entities.Schedule;
 import ru.tolstikhin.entities.TrainStation;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class BuyController {
@@ -42,6 +44,9 @@ public class BuyController {
         CityDAO cityDAO = new CityDAO();
         StationDAO stationDAO = new StationDAO();
         SeatDAO seatDAO = new SeatDAO();
+
+        TransactionDAO transactionDAO = new TransactionDAO();
+        transactionDAO.insertTransaction(MainController.getUserId(), LocalDateTime.now());
 
         // Расписание маршрута, для которого покупается билет
         Schedule schedule = MainController.getCurrSchedule();

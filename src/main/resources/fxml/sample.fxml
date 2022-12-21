@@ -11,11 +11,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="535.0" prefWidth="770.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tolstikhin.controllers.MainController">
+<AnchorPane prefHeight="535.0" prefWidth="770.0" style="-fx-background-color: white;" styleClass="text" stylesheets="@../styles/font.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tolstikhin.controllers.MainController">
    <children>
       <Text fx:id="logInText" layoutX="655.0" layoutY="32.0" onMouseClicked="#showAuthorizationWindow" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Личный кабинет" textAlignment="RIGHT" AnchorPane.rightAnchor="22.75976562500034">
          <font>
-            <Font name="Arial" size="15.0" />
+            <Font size="15.0" />
          </font>
       </Text>
       <Text fx:id="personalAccount" disable="true" layoutX="655.0" layoutY="32.0" onMouseClicked="#showAccountWindow" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" textAlignment="RIGHT" visible="false" wrappingWidth="113.0">
@@ -34,7 +34,7 @@
          </font>
       </TextField>
       <DatePicker fx:id="departureDate" focusTraversable="false" layoutX="496.0" layoutY="53.0" prefHeight="40.0" prefWidth="172.0" promptText="Дата" />
-      <Button layoutX="668.1999999999999" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#showRoutes" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #e31b1a; -fx-cursor: hand;" text="НАЙТИ" textFill="WHITE" AnchorPane.rightAnchor="17.800000000000068">
+      <Button layoutX="668.1999999999999" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#showRoutes" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #e31b1a; -fx-cursor: hand;" styleClass="text" text="НАЙТИ" textFill="WHITE" AnchorPane.rightAnchor="17.800000000000068">
          <font>
             <Font name="Arial" size="15.0" />
          </font>

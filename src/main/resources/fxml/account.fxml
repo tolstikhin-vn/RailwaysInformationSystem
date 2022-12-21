@@ -12,8 +12,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="343.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tolstikhin.controllers.AccountController">
+<AnchorPane prefHeight="343.0" prefWidth="730.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.tolstikhin.controllers.AccountController">
    <children>
+      <Pane fx:id="passengers" layoutX="13.0" layoutY="165.0" onMouseClicked="#showPassengers" onMouseEntered="#changePassengersPaneColor" onMouseExited="#changeDefPassengersPaneColor" prefHeight="30.0" prefWidth="130.0" style="-fx-cursor: hand;">
+         <children>
+            <Text fx:id="profile11" layoutX="12.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пассажиры">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
       <ImageView fitHeight="75.0" fitWidth="74.0" layoutX="41.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/user.png" />
@@ -164,10 +173,10 @@
             <Button fx:id="addPassengerButton" focusTraversable="false" layoutX="246.0" layoutY="5.0" mnemonicParsing="false" onMouseClicked="#showAddingPassenger" text="Добавить пассажира" />
          </children>
       </Pane>
-      <Pane fx:id="ordersPane" layoutX="160.0" layoutY="8.0" prefHeight="327.0" prefWidth="562.0">
+      <Pane fx:id="ordersPane" layoutX="160.0" layoutY="8.0" prefHeight="327.0" prefWidth="562.0" visible="false">
          <children>
             <ListView fx:id="ordersListView" fixedCellSize="0.0" focusTraversable="false" layoutX="27.0" layoutY="14.0" prefHeight="120.0" prefWidth="509.0" />
-            <Pane fx:id="orderInformation" layoutX="27.0" layoutY="134.0" prefHeight="146.0" prefWidth="509.0" style="-fx-background-color: #f7f7f7;">
+            <Pane fx:id="orderInformation" layoutX="27.0" layoutY="134.0" prefHeight="146.0" prefWidth="509.0" style="-fx-background-color: #f7f7f7;" visible="false">
                <children>
                   <Text fx:id="trainNameText" layoutX="54.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="130.0">
                      <font>
@@ -241,7 +250,7 @@
                   </Text>
                </children>
             </Pane>
-            <Button fx:id="returnTicketButtonByPass" layoutX="422.0" layoutY="293.0" mnemonicParsing="false" onMouseClicked="#returnTicket" prefHeight="31.0" prefWidth="139.0" style="-fx-background-color: #f20d33; -fx-cursor: hand;" text="Вернуть билет" textFill="WHITE" visible="false">
+            <Button fx:id="returnTicketButtonByPass" disable="true" layoutX="421.0" layoutY="292.0" mnemonicParsing="false" onMouseClicked="#returnTicket" prefHeight="31.0" prefWidth="139.0" style="-fx-background-color: #f20d33; -fx-cursor: hand;" text="Вернуть билет" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="16.0" />
                </font>
@@ -250,20 +259,30 @@
       </Pane>
       <Pane fx:id="adminPane" layoutX="160.0" layoutY="8.0" prefHeight="327.0" prefWidth="562.0" visible="false">
          <children>
-            <TextField fx:id="ticketNumberTextField" focusTraversable="false" layoutX="14.0" layoutY="25.0" prefHeight="25.0" prefWidth="175.0" promptText="Номер билета" />
-            <Button layoutX="14.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#findTicket" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #01abfb; -fx-cursor: hand;" text="Найти" textFill="WHITE">
+            <TextField fx:id="ticketNumberTextField" focusTraversable="false" layoutX="23.0" layoutY="48.0" prefHeight="25.0" prefWidth="175.0" promptText="Номер билета" />
+            <Button layoutX="23.0" layoutY="86.0" mnemonicParsing="false" onMouseClicked="#findTicket" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #01abfb; -fx-cursor: hand;" text="Найти" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="returnTicketButton" disable="true" layoutX="14.0" layoutY="115.0" mnemonicParsing="false" onMouseClicked="#returnTicketByAdmin" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #f20d33; -fx-cursor: hand;" text="Вернуть" textFill="WHITE">
+            <Button fx:id="returnTicketButton" disable="true" layoutX="23.0" layoutY="132.0" mnemonicParsing="false" onMouseClicked="#returnTicketByAdmin" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #f20d33; -fx-cursor: hand;" text="Сдать" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="16.0" />
                </font>
             </Button>
+            <Button layoutX="442.0" layoutY="290.0" mnemonicParsing="false" onMouseClicked="#logOut" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #f20d33; -fx-cursor: hand;" text="Выйти" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+            <Text layoutX="23.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Введите номер билета пассажира в поле ниже">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </Text>
          </children>
       </Pane>
-      <Pane fx:id="profile" layoutX="13.0" layoutY="105.0" onMouseClicked="#showProfile" prefHeight="30.0" prefWidth="130.0" style="-fx-cursor: hand;">
+      <Pane fx:id="profile" layoutX="13.0" layoutY="105.0" onMouseClicked="#showProfile" onMouseEntered="#changeProfilePaneColor" onMouseExited="#changeDefProfilePaneColor" prefHeight="30.0" prefWidth="130.0" style="-fx-cursor: hand;">
          <children>
             <Text layoutX="22.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Профиль">
                <font>
@@ -272,18 +291,9 @@
             </Text>
          </children>
       </Pane>
-      <Pane fx:id="orders" layoutX="13.0" layoutY="135.0" onMouseClicked="#showOrders" prefHeight="30.0" prefWidth="130.0" style="-fx-cursor: hand;">
+      <Pane fx:id="orders" layoutX="13.0" layoutY="135.0" onMouseClicked="#showOrders" onMouseEntered="#changeOrdersPaneColor" onMouseExited="#changeDefOrdersPaneColor" prefHeight="30.0" prefWidth="130.0" style="-fx-cursor: hand;">
          <children>
             <Text fx:id="profile1" layoutX="11.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Мои заказы">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-            </Text>
-         </children>
-      </Pane>
-      <Pane fx:id="passengers" layoutX="13.0" layoutY="165.0" onMouseClicked="#showPassengers" prefHeight="30.0" prefWidth="130.0" style="-fx-cursor: hand;">
-         <children>
-            <Text fx:id="profile11" layoutX="12.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пассажиры">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>

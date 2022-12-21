@@ -15,7 +15,7 @@
          </font>
       </Text>
       <TextField fx:id="authLoginField" focusTraversable="false" layoutX="35.0" layoutY="64.0" prefHeight="38.0" prefWidth="230.0" promptText="Логин" />
-      <Text fill="#666666" layoutX="126.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Логин">
+      <Text fill="#666666" layoutX="126.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Логин">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
@@ -25,12 +25,12 @@
             <Font name="Arial" size="18.0" />
          </font>
       </Text>
-      <Text fill="#00b4dc" layoutX="151.0" layoutY="206.0" onMouseClicked="#recoverPassword" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Забыли пароль?" underline="true">
+      <Text fill="#00b4dc" layoutX="149.0" layoutY="195.0" onMouseClicked="#recoverPassword" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Забыли пароль?" underline="true">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>
       </Text>
-      <Text fill="#535252" layoutX="36.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Нажимая кнопку «Войти», я соглашаюсь c политикой конфиденциальности и обработкой персональных данных." textAlignment="CENTER" wrappingWidth="230.39999999999986">
+      <Text fill="#535252" layoutX="36.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Нажимая кнопку «Войти», я соглашаюсь c политикой конфиденциальности и обработкой персональных данных." textAlignment="CENTER" wrappingWidth="230.39999999999986">
          <font>
             <Font name="Arial" size="12.0" />
          </font></Text>

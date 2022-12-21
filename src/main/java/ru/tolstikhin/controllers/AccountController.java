@@ -25,7 +25,7 @@ import ru.tolstikhin.entities.User;
 import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -35,15 +35,26 @@ public class AccountController extends MainApp implements Initializable {
     public final int ID_NON_EXISTENT_USER = 0;
     private final String FX_BACKGROUND_COLOR_RED = "-fx-background-color: red";
     private final String FX_BACKGROUND_NO_COLOR = "-fx-background-color: null";
+
+    private final String DEF_MENU_PANE_STYLE = "-fx-background-color:  #f7f7f7; -fx-cursor: hand";
+    private final String NEW_MENU_PANE_STYLE = "-fx-background-color: #eaeaea; -fx-cursor: hand";
     private final String PASSENGERS_TEXT = "Пассажиры";
-    private final String SUCCESSFUL_SAVING = "Данные успешно сохранены";
+    private final String SUCCESSFUL_SAVING = "Данные успешно сохранены!";
+    private final String NOT_SUCCESSFUL_SAVING = "Данные не сохранены! Не заполнены или заполнены некорректно все обязательные поля.";
     private final String INCORRECT_EMAIL = "Адрес электронной почты некорректный!";
     private final String FILL_IN_DATA = "Чтобы добавлять пассажиров необходимо заполнить раздел \"Основная информация\" в профиле!";
     private final String EMPTY_DATA_FIELDS = "Все поля должны быть заполнены!";
-    private final String EMAIL_REGEX = "^(?=(.{1,64}@))(?=(.{6,255}$))((([A-Za-zА-Яа-яЁё0-9_]+)(\\+"
-            + "[A-Za-z0-9А-Яа-яЁё\\-_]+)?)@(([A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\\-_]*\\.)+([A-Za-zА-Яа-яЁё0-9]{2,})"
-            + "|(((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])\\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]"
-            + "|[1-9][0-9]|[0-9]))))$";
+    
+    private final String TICKET_RETURNED = "Билет возвращен!";
+
+    private final String PASSENGER_ADDED = "Пассажир добавлен!";
+    private final String PASSENGER_NOT_ADDED = "Пассажир не добавлен! Заполните все необходимые данные корректно.";
+
+    private final String EMAIL_REGEX = "^(?=(.{1,64}@))(?=(.{6,255}$))((([A-Za-zА-Яа-яЁё0-9]+)[-._]?" +
+            "([A-Za-z0-9А-Яа-яЁё]+)?)@(([A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\\\\-_]*.)+([A-Za-zА-Яа-яЁё0-9]{2,})" +
+            "|(((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9]).){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9]))))$";
+
+    private final String PASSPORT_DATA_REGEX = "^[0-9]{4} [0-9]{6}$";
 
     private int userId;
 
@@ -241,6 +252,7 @@ public class AccountController extends MainApp implements Initializable {
                 && userDAO.selectUser().getSurname() != null
                 && userDAO.selectUser().getEmail() != null
                 && userDAO.selectUser().getGender() != null) {
+            returnTicketButtonByPass.setDisable(true);
             profilePane.setVisible(false);
             infAboutPassenger.setVisible(false);
             ordersPane.setVisible(false);
@@ -258,7 +270,7 @@ public class AccountController extends MainApp implements Initializable {
     void showProfile(MouseEvent event) {
         ordersListView.getSelectionModel().clearSelection();
         orderInformation.setVisible(false);
-        returnTicketButtonByPass.setVisible(false);
+        returnTicketButtonByPass.setDisable(true);
         showProfileMethod();
 
     }
@@ -267,13 +279,51 @@ public class AccountController extends MainApp implements Initializable {
     void showOrders(MouseEvent event) {
         ordersListView.getSelectionModel().clearSelection();
         orderInformation.setVisible(false);
-        returnTicketButtonByPass.setVisible(false);
         profilePane.setVisible(false);
         passengersPane.setVisible(false);
         ordersPane.setVisible(true);
-
+        returnTicketButtonByPass.setDisable(true);
         showOrdersList();
         eventUpdateHandlers();
+    }
+
+
+    @FXML
+    void changeOrdersPaneColor(MouseEvent event) {
+        changeBackgroundColor(orders);
+    }
+
+    @FXML
+    void changeProfilePaneColor(MouseEvent event) {
+        changeBackgroundColor(profile);
+    }
+
+    @FXML
+    void changePassengersPaneColor(MouseEvent event) {
+        changeBackgroundColor(passengers);
+    }
+
+    @FXML
+    void changeDefOrdersPaneColor(MouseEvent event) {
+        changeDefBackgroundColor(orders);
+    }
+
+    @FXML
+    void changeDefProfilePaneColor(MouseEvent event) {
+        changeDefBackgroundColor(profile);
+    }
+
+    @FXML
+    void changeDefPassengersPaneColor(MouseEvent event) {
+        changeDefBackgroundColor(passengers);
+    }
+
+    private void changeBackgroundColor(Pane currentPane) {
+        currentPane.setStyle(NEW_MENU_PANE_STYLE);
+    }
+
+    private void changeDefBackgroundColor(Pane currentPane) {
+        currentPane.setStyle(DEF_MENU_PANE_STYLE);
     }
 
     private void showOrdersList() {
@@ -289,8 +339,8 @@ public class AccountController extends MainApp implements Initializable {
     private void eventUpdateHandlers() {
         if (!ordersListView.getItems().isEmpty()) {
             ordersListView.setOnMouseClicked(event -> {
-                returnTicketButtonByPass.setVisible(true);
                 orderInformation.setVisible(true);
+                returnTicketButtonByPass.setDisable(true);
                 MainController mainController = new MainController();
                 Ticket ticket = listOfTickets.get(ordersListView.getSelectionModel().getSelectedIndex());
                 orderNumber.setText(Integer.toString(ticket.getTicketNumber()));
@@ -308,7 +358,15 @@ public class AccountController extends MainApp implements Initializable {
                         ticket.getArrivalDate().toLocalDate(),
                         ticket.getDepartureTime().toLocalTime(),
                         ticket.getArrivalTime().toLocalTime()));
+                setReturnButtonDisableFalse(ticket);
             });
+        }
+    }
+
+    private void setReturnButtonDisableFalse(Ticket ticket) {
+        Date date = new Date();
+        if (ticket.getDepartureDate().after(date)) {
+            returnTicketButtonByPass.setDisable(false);
         }
     }
 
@@ -328,29 +386,39 @@ public class AccountController extends MainApp implements Initializable {
 
     @FXML
     void savePassengerData(MouseEvent event) {
-        PassengerDAO passengerDAO = new PassengerDAO();
-        List<Passenger> passengerList = passengerDAO.selectPassengers(MainController.getUserId());
-        Passenger passenger = passengerList.get(passengersList.getSelectionModel().getSelectedIndex());
+        if (isDataFull()) {
+            PassengerDAO passengerDAO = new PassengerDAO();
+            List<Passenger> passengerList = passengerDAO.selectPassengers(MainController.getUserId());
+            Passenger passenger = passengerList.get(passengersList.getSelectionModel().getSelectedIndex());
 
-        passengerDAO.updateData(passenger.getPassengerId(),
-                passenger.getName(),
-                passenger.getSurname(),
-                passenger.getPatronymic(),
-                passenger.getBirthdate(),
-                passenger.getPassportData(),
-                passenger.getGender());
-        showAlertWindow(SUCCESSFUL_SAVING);
+            passengerDAO.updateData(passenger.getPassengerId(),
+                    passenger.getName(),
+                    passenger.getSurname(),
+                    passenger.getPatronymic(),
+                    passenger.getBirthdate(),
+                    passenger.getPassportData(),
+                    passenger.getGender());
+            showAlertWindow(SUCCESSFUL_SAVING);
+        } else {
+            showAlertWindow(NOT_SUCCESSFUL_SAVING);
+        }
     }
 
     @FXML
     void addNewPassenger() {
-        PassengerDAO passengerDAO = new PassengerDAO();
-        passengerDAO.insertData(MainController.getUserId(),
-                passName.getText(), passSurname.getText(),
-                passPatronymic.getText(),
-                java.sql.Date.valueOf(passBirthday.getValue()),
-                passPassportData.getText(),
-                getGender(passMaleGender, passFemaleGender));
+        if (isDataFull()) {
+            PassengerDAO passengerDAO = new PassengerDAO();
+            passengerDAO.insertData(MainController.getUserId(),
+                    passName.getText(),
+                    passSurname.getText(),
+                    passPatronymic.getText(),
+                    java.sql.Date.valueOf(passBirthday.getValue()),
+                    passPassportData.getText(),
+                    getGender(passMaleGender, passFemaleGender));
+            showAlertWindow(PASSENGER_ADDED);
+        } else {
+            showAlertWindow(PASSENGER_NOT_ADDED);
+        }
     }
 
     @FXML
@@ -363,7 +431,7 @@ public class AccountController extends MainApp implements Initializable {
         showOrdersList();
         eventUpdateHandlers();
         orderInformation.setVisible(false);
-        returnTicketButtonByPass.setVisible(false);
+        returnTicketButtonByPass.setDisable(true);
     }
 
     private Ticket getTicket() {
@@ -385,7 +453,18 @@ public class AccountController extends MainApp implements Initializable {
         ticketDAO.deleteTicket(currentTicket.getTicketNumber());
         ticketNumberTextField.setText("");
         returnTicketButton.setDisable(true);
-        showAlertReturnWindow();
+        showAlertWindow(TICKET_RETURNED);
+    }
+
+    private boolean isDataFull() {
+        if (!passName.getText().isBlank()
+                && !passSurname.getText().isBlank()
+                && passBirthday.getValue() != null
+            && passPassportData.getText().matches(PASSPORT_DATA_REGEX)
+            && getGender(passMaleGender, passFemaleGender) != null) {
+            return true;
+        }
+        return false;
     }
 
     private void showProfileMethod() {
@@ -505,15 +584,6 @@ public class AccountController extends MainApp implements Initializable {
     private void setDefaultGenderPaneStyle() {
         passMaleGender.setStyle(FX_BACKGROUND_NO_COLOR);
         passFemaleGender.setStyle(FX_BACKGROUND_NO_COLOR);
-    }
-
-    private void showAlertReturnWindow() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Информация");
-        alert.setHeaderText(null);
-        alert.setContentText("Билет возвращен!");
-
-        alert.showAndWait();
     }
 
     @Override

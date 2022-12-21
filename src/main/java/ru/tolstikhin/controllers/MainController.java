@@ -79,7 +79,6 @@ public class MainController implements Initializable {
     public static void setCurrSchedule(Schedule currSchedule) {
         MainController.currSchedule = currSchedule;
     }
-
     @FXML
     private TextField cityFromField;
 
