@@ -6,18 +6,17 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import ru.tolstikhin.HibernateUtil;
 import ru.tolstikhin.entities.Ticket;
-import ru.tolstikhin.entities.User;
-import ru.tolstikhin.entities.Wagon;
 
 import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
 public class TicketDAO {
+
+    private final int NUMBER_LENGTH = 9;
 
     private SessionFactory sessionFactory;
 
@@ -28,7 +27,7 @@ public class TicketDAO {
     }
 
     // Вставить в таблицу билетов новый купленный билет
-    public void insertTicket(int userId, String trainName, int wagonNumber, String wagonType, int seatNumber,
+    public Ticket insertTicket(int userId, String trainName, int wagonNumber, String wagonType, int seatNumber,
                              String name, String surname, String patronymic, String passportData, Date birthDate,
                              Date departureDate, Time departureTime, Date arrivalDate, Time arrivalTime,
                              String cityFrom, String stationFrom, String cityTo, String stationTo, double price) {
@@ -39,6 +38,22 @@ public class TicketDAO {
         session.persist(ticket);
         session.getTransaction().commit();
         session.close();
+        return ticket;
+    }
+
+    public void insertTicketNumber(int ticketId) {
+        session = HibernateUtil.openSession();
+        Ticket ticket = session.get(Ticket.class, ticketId);
+        ticket.setTicketNumber(generateTicketNumber(ticketId));
+        session.merge(ticket);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    private String generateTicketNumber(int ticketId) {
+        int unfilledLength = NUMBER_LENGTH - Integer.toString(ticketId).length();
+        System.out.println(unfilledLength);
+        return "0".repeat(Math.max(0, unfilledLength)) + ticketId;
     }
 
     public List<Ticket> selectListOfTickets(int userId) {
@@ -53,7 +68,7 @@ public class TicketDAO {
         return listOfTickets;
     }
 
-    public void deleteTicket(int ticketNumber) {
+    public void deleteTicket(String ticketNumber) {
         session = HibernateUtil.openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaDelete<Ticket> criteriaDelete = builder.createCriteriaDelete(Ticket.class);

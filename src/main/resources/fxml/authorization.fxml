@@ -25,7 +25,7 @@
             <Font name="Arial" size="18.0" />
          </font>
       </Text>
-      <Text fill="#00b4dc" layoutX="149.0" layoutY="195.0" onMouseClicked="#recoverPassword" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Забыли пароль?" underline="true">
+      <Text fill="#00b4dc" layoutX="149.0" layoutY="202.0" onMouseClicked="#recoverPassword" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-cursor: hand;" text="Забыли пароль?" underline="true">
          <font>
             <Font name="Arial Bold" size="14.0" />
          </font>

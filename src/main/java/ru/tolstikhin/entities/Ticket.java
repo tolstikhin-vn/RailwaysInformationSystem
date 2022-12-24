@@ -16,8 +16,11 @@ public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ticket_id")
+    private int ticket_id;
+
     @Column(name = "ticket_number")
-    private int ticket_number;
+    private String ticket_number;
 
     @Column(name = "user_id")
     private int user_id;
@@ -78,6 +81,7 @@ public class Ticket {
 
     public Ticket() {
     }
+
     public Ticket(int user_id, String train_name, int wagon_number, String wagon_type, int seat_number, String name,
                   String surname, String patronymic, String passport_data, Date birthdate, Date departure_date,
                   Time departure_time, Date arrival_date, Time arrival_time, String city_from, String station_from,
@@ -103,7 +107,11 @@ public class Ticket {
         this.price = price;
     }
 
-    public int getTicketNumber() {
+    public int getTicketId() {
+        return ticket_id;
+    }
+
+    public String getTicketNumber() {
         return ticket_number;
     }
 
@@ -181,5 +189,9 @@ public class Ticket {
 
     public String getStationTo() {
         return station_to;
+    }
+
+    public void setTicketNumber(String ticket_number) {
+        this.ticket_number = ticket_number;
     }
 }

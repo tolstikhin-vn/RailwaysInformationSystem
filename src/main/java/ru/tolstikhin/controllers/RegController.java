@@ -29,7 +29,7 @@ public class RegController implements Initializable {
     void registerUser(MouseEvent event) {
         UserDAO userDAO = new UserDAO();
         if (!userDAO.isLoginExist(regLoginField.getText())) {
-            System.out.println("логин существует");
+            System.out.println("Логин существует");
         } else {
             userDAO.insertUserData(regLoginField.getText(), regPasswordField.getText());
             AuthController.regStage.close();

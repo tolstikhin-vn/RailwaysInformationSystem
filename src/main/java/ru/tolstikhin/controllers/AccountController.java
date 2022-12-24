@@ -331,7 +331,7 @@ public class AccountController extends MainApp implements Initializable {
         TicketDAO ticketDAO = new TicketDAO();
         listOfTickets = ticketDAO.selectListOfTickets(MainController.getUserId());
         for (Ticket ticket : listOfTickets) {
-            orders.add(Integer.toString(ticket.getTicketNumber()));
+            orders.add(ticket.getTicketNumber());
         }
         ordersListView.setItems(orders);
     }
@@ -343,7 +343,7 @@ public class AccountController extends MainApp implements Initializable {
                 returnTicketButtonByPass.setDisable(true);
                 MainController mainController = new MainController();
                 Ticket ticket = listOfTickets.get(ordersListView.getSelectionModel().getSelectedIndex());
-                orderNumber.setText(Integer.toString(ticket.getTicketNumber()));
+                orderNumber.setText(ticket.getTicketNumber());
                 ticketPrice.setText(ticket.getPrice() + " Р");
                 trainNameText.setText(ticket.getTrainName());
                 routeNameText.setText(ticket.getCityFrom() + " - " + ticket.getCityTo());

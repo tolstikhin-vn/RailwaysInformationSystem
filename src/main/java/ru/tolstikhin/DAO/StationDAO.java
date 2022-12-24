@@ -22,7 +22,7 @@ public class StationDAO {
      */
     public String selectStationFrom(int stationId) {
         session = HibernateUtil.openSession();
-        Query query = session.createQuery("SELECT ts.station_name FROM TrainStation ts\n" +
+        Query query = session.createQuery("SELECT DISTINCT ts.station_name FROM TrainStation ts\n" +
                 "INNER JOIN Route r\n" +
                 "ON r.station_from = ts.station_id\n" +
                 "WHERE ts.station_id = :paramStationId");
@@ -39,7 +39,7 @@ public class StationDAO {
      */
     public String selectStationTo(int stationId) {
         session = HibernateUtil.openSession();
-        Query query = session.createQuery("SELECT ts.station_name FROM TrainStation ts\n" +
+        Query query = session.createQuery("SELECT DISTINCT ts.station_name FROM TrainStation ts\n" +
                 "INNER JOIN Route r\n" +
                 "ON r.station_to = ts.station_id\n" +
                 "WHERE ts.station_id = :paramStationId");

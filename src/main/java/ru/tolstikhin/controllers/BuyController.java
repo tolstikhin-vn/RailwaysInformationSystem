@@ -16,7 +16,7 @@ import ru.tolstikhin.DAO.WagonDAO;
 import ru.tolstikhin.DAO.WagonTypeDAO;
 import ru.tolstikhin.entities.Passenger;
 import ru.tolstikhin.entities.Schedule;
-import ru.tolstikhin.entities.TrainStation;
+import ru.tolstikhin.entities.Ticket;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -51,7 +51,7 @@ public class BuyController {
         // Расписание маршрута, для которого покупается билет
         Schedule schedule = MainController.getCurrSchedule();
 
-        ticketDAO.insertTicket(MainController.getUserId(), trainDAO.selectTrainName(schedule.getScheduleId()),
+        Ticket ticket = ticketDAO.insertTicket(MainController.getUserId(), trainDAO.selectTrainName(schedule.getScheduleId()),
                 SeatSelectionController.getNumberOfWagon(), wagonTypeDAO.selectWagonType(wagonDAO.selectWagon(SeatSelectionController.getWagonNumberOnTrain(),
                         schedule.getTrainNumber()).getWagonType()).getTypeName(),
                 SeatSelectionController.getSeatIndex(), passenger.getName(), passenger.getSurname(), passenger.getPatronymic(), passenger.getPassportData(),
@@ -62,6 +62,8 @@ public class BuyController {
                 cityDAO.selectCityTo(routeDAO.selectRoute(schedule.getScheduleId()).getStationTo()),
                 stationDAO.selectStationTo(routeDAO.selectRoute(schedule.getScheduleId()).getStationTo()),
                 seatDAO.selectSeat(SeatSelectionController.getSeatIndex(), SeatSelectionController.getNumberOfWagon()).getSeatPrice());
+
+        ticketDAO.insertTicketNumber(ticket.getTicketId());
 
         seatDAO.updateSeatBooked(seatDAO.selectSeat(SeatSelectionController.getSeatIndex(), SeatSelectionController.getNumberOfWagon()).getSeatNumber(), true);
 
